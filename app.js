@@ -4,7 +4,13 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const offersController = require('./controller/OffersController')
 
+
+
+
+
 app.use(cors()) 
+
+
 
 app.use((req,res,next)=> {
   res.setHeader("Access-Control-Allow-Origin" ,"*");
@@ -32,6 +38,8 @@ app.get('/api/v1',(req,res)=>{
     });
   
   })
+
+
 
   app.post('/Evolving/Api/Evolution/PresentOffers',offersController.presentOffers);
 
