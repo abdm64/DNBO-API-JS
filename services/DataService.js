@@ -24,7 +24,10 @@ return dataMerged
 
 labeleOffers(datas,status){
   
+if (datas === undefined) {
 
+    return
+} 
 
     for (let  data of datas){
 
@@ -33,7 +36,7 @@ labeleOffers(datas,status){
     }
 
 
-    
+
 
 
 

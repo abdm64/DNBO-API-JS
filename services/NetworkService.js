@@ -7,6 +7,9 @@ class NetworkService {
 
 //DNBO 05
 async getOffers05(reqdata){
+
+    //  reqData if ( channel_id : -1 ) request data from redouane
+
     const postOffersUrl = "http://172.16.64.42:15558/Evolving/Api/Evolution/PresentOffers"
     const auth =  {
         username: "Djezzy_dnbo_user",

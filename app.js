@@ -1,14 +1,9 @@
-console.log("DNBO is here ")
-
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors');
-const Networks = require('./services/NetworkService')
-const DataService = require('./services/DataService')
+const offersController = require('./controller/OffersController')
 
-const networkService = new Networks()
-const dataService = new DataService()
 app.use(cors()) 
 
 app.use((req,res,next)=> {
@@ -23,6 +18,8 @@ app.use((req,res,next)=> {
   );
   next();
 });
+
+
 app.use(bodyParser.json());
 
 
@@ -36,81 +33,10 @@ app.get('/api/v1',(req,res)=>{
   
   })
 
-  app.post('/Evolving/Api/Evolution/PresentOffers',async  (req,res)=>{
-
-      const reqdata = req.body
-      try {
-        var dataOffers05 =  await networkService.getOffers05(reqdata)
-        var dataOffers10  = await networkService.getoffers01(reqdata)
-        console.log(dataOffers10.data)
-
-        const data05 = dataService.labeleOffers(dataOffers05.data,'static')
-        //const data10 = dataService.labeleOffers(dataOffers10.data,'dynamic')
-       // const dataMerged = dataService.mergeOffers(data05,data10)
-  
+  app.post('/Evolving/Api/Evolution/PresentOffers',offersController.presentOffers);
 
 
-     //  dataService.mergeOffers(dataOffers05.data,data)
-
-     res.status(200).send(data05)
-
-      }  catch(err){
-
-        
-        res.status(500).json({
-         
-          message : err.message
-        })
-         
-        
-
-      }
-
-      
-       
- 
-//orascom2014++ 
-
-});
-
-
-app.post('/Evolving/Api/Evolution/Acceptoffer',async  (req,res)=>{
-
-  const reqdata = req.body
-  try {
-    
-   if ( reqdata.RouteName === "static") {
-
-
-    await networkService.acceptOffer05(reqdata)
-
-   } else if  ( reqdata.RouteName === "dynamic") {
-
-
-    await networkService.acceptOffer10(reqdata)
-   }
-    
-
- res.status(200)
-
-  }  catch(err){
-
-    
-    res.status(500).json({
-     
-      message : "somthing goes wrong "
-    })
-     
-    
-
-  }
-
-  
-   
-
-//orascom2014++ 
-
-});
+  app.post('/Evolving/Api/Evolution/Acceptoffer',offersController.acceptOffes );
   
 
 
