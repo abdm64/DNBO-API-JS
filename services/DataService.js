@@ -23,7 +23,7 @@ return dataMerged
 
 }
 
-labeleOffers(datas,status){
+labeleOffers05(datas){
   
 if (datas === undefined) {
 
@@ -32,11 +32,11 @@ if (datas === undefined) {
 
 
     for (let  data of datas){
-
-        data.routeName = status
-        console.log(offerData.getoffersById(data.offer_id))
-            //   data.Offer_code = offerData.getoffersById(data.offer_id)[0].offer_code
-            //   data.price = offerData.getoffersById(data.offer_id)[0].price
+              delete data.offer_category_name
+              delete data.action_type_name
+              data.routeName = "static"
+              data.Offer_code = offerData.getoffersById(data.offer_id).offer_code
+              data.price = offerData.getoffersById(data.offer_id).price
 
     }
 
@@ -46,7 +46,8 @@ if (datas === undefined) {
 
 
 
-labeleOffers10(datas,status){
+labeleOffers10(datas){
+    
   
     if (datas === undefined) {
     
@@ -54,8 +55,10 @@ labeleOffers10(datas,status){
     } 
     
         for (let  data of datas){
-    
-            data.routeName = status
+            delete data.action_type_name
+            delete data.offer_type_name
+            data.routeName = "dynamic"
+            // TODO ADD offer_Code to the output
             // data.Offer_code = offerData.getoffersById(data.offer_id)[0].offer_code
           //  data.price = offerData.getoffersById(data.offer_id)[0].price
     

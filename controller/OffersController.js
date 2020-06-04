@@ -19,12 +19,12 @@ exports.presentOffers = async (req,res) =>{
       const dataOffers10  = await networkService.getoffers01(reqdata)
       if ( dataOffers05 === undefined) {
           
-        const data10 = dataService.labeleOffers(dataOffers10.data,'dynamic')
+        const data10 = dataService.labeleOffers10(dataOffers10.data)
         res.status(200).send(data10)
 
       } else if ( dataOffers10 === undefined) {
        
-        const data05 = dataService.labeleOffers(dataOffers05.data,'static')
+        const data05 = dataService.labeleOffers05(dataOffers05.data)
         res.status(200).send(data05)
 
       }else if  (dataOffers10 === undefined && dataOffers05 === undefined ) {
@@ -34,8 +34,8 @@ exports.presentOffers = async (req,res) =>{
 
       } else{
 
-           const data05 = dataService.labeleOffers(dataOffers05.data,'static')
-           const data10 = dataService.labeleOffers(dataOffers10.data,'dynamic')
+           const data05 = dataService.labeleOffers05(dataOffers05.data)
+           const data10 = dataService.labeleOffers(dataOffers10.data)
            const dataMerged = dataService.mergeOffers(data05,data10)
            res.status(200).send(dataMerged)
       }
@@ -58,7 +58,7 @@ exports.presentOffers = async (req,res) =>{
     }
 }
 
-exports.acceptOffes = async (req,res)=>{
+exports.acceptOffer = async (req,res)=>{
 
     const reqdata = req.body
 

@@ -44,7 +44,7 @@ app.get('/api/v1',(req,res)=>{
   app.post('/Evolving/Api/Evolution/PresentOffers',offersController.presentOffers);
 
 
-  app.post('/Evolving/Api/Evolution/Acceptoffer',offersController.acceptOffes );
+  app.post('/Evolving/Api/Evolution/Acceptoffer',offersController.acceptOffer );
   
 
 

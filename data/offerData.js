@@ -8,11 +8,11 @@ var offersArray = JSON.parse(fs.readFileSync('./data/offer_code_price.json', 'ut
 
 class OfferData {
 
+
     getoffersById(id){
 
-
-
-        return  offersArray.filter( offer => offer.offer_id === id )
+        
+        return  offersArray.filter( offer => offer.offer_id === id )[0]
     }
 
 
