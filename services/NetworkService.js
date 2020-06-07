@@ -10,10 +10,10 @@ async getOffers05(reqdata){
 
     //  reqData if ( channel_id : -1 ) request data from redouane
 
-    const postOffersUrl = "http://172.16.64.42:15558/Evolving/Api/Evolution/PresentOffers"
+    const postOffersUrl = process.env.OFFERS05
     const auth =  {
-        username: "Djezzy_dnbo_user",
-        password: "orascom2014++"
+        username: process.env.USER,
+        password: process.env.PASS
       }
       
       var data;
@@ -46,7 +46,7 @@ async getoffers01(reqdata){
     }
 
 
-    const postOffersUrl = "http://172.16.64.98:6061/dnbo-engine/PresentOffers"
+    const postOffersUrl = process.env.OFFERS01
     
       var data;
 
@@ -69,17 +69,18 @@ return data
 
   async acceptOffer05(reqData) {
 
-    const apiUrl = "http://172.16.64.42:15558/Evolving/Api/Evolution/Acceptoffer"
+    const apiUrl = process.env.ACCEPT05
 
     const auth =  {
-        username: "Djezzy_dnbo_user",
-        password: "orascom2014++"
-      }
+      username: process.env.USER,
+      password: process.env.PASS
+    }
       
-      var data;
+     // var data;
 
 try {
- data = await axios.post(apiUrl, reqData,{ auth : auth})
+
+ await axios.post(apiUrl, reqData,{ auth : auth})
 
 
 
@@ -90,29 +91,31 @@ try {
 
 
 }
-return data
+
 
 }
  async acceptOffer10(reqData){
-    const apiUrl = "http://172.16.64.98:6061/dnbo-engine/AcceptOffer"
+   console.log("accept offer 10");
+   
+    const apiUrl = process.env.ACCEPT01
 
 
     var data;
 
-    try {
-     data = await axios.post(apiUrl, reqData)
+    // try {
     
     
     
-    } catch(err){
-    
-    //console.log(err)
-    
-    
-    
-    }
-    return data
+    //  return data
 
+    // } catch(err){
+    
+    // console.log(err.message)
+    // return 
+  
+    // }
+   return data = await axios.post(apiUrl, reqData)
+   
 
 
 }
@@ -128,3 +131,14 @@ return data
 
 
 module.exports = NetworkService;
+
+
+//  {
+// 	 	"msisdn":783605591,"channel_id": 3,
+//     "offer_id": 10261,
+//     "offer_name": "40= 60 Min Djezzy + 50 DA TOUS /24",
+//     "position": 2,
+//     "routeName": "static",
+//     "Offer_code": "BTLONNET60MINCROSSNET50DADAY",
+//     "price": 40
+//  }

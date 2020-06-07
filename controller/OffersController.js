@@ -61,29 +61,37 @@ exports.presentOffers = async (req,res) =>{
 exports.acceptOffer = async (req,res)=>{
 
     const reqdata = req.body
+    var data;
+    
 
     try {
 
       // route using  offer_id 
   
-     if ( reqdata.RouteName === "static") {
+     if ( reqdata.routeName === "static") {
   
   
-      await networkService.acceptOffer05(reqdata)
+     await networkService.acceptOffer05(reqdata)
+     res.sendStatus(200)
+   
+
+
   
-     } else if  ( reqdata.RouteName === "dynamic") {
+     } else if  ( reqdata.routeName === "dynamic") {
   
   
-      await networkService.acceptOffer10(reqdata)
+   await networkService.acceptOffer10(reqdata)
+  res.sendStatus(200)
+   
      }
+     console.log(data)
       
   
-   res.status(200)
   
     }  catch(err){
   
 
-
+console.log(err.message)
       
       res.status(500).json({
        

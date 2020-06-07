@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const offersController = require('./controller/OffersController')
+require('dotenv').config();
 
 
 
