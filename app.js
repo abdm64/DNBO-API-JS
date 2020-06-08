@@ -54,6 +54,3 @@ app.get('/api/v1',(req,res)=>{
     console.log('app listening on port ' + 3000);
 });
 
-//curl -v -u Djezzy_dnbo_user:orascom2014++ -H "content-type:application/json"  -X POST http://172.16.64.42:15558/Evolving/Api/Evolution/PresentOffers -d {"msisdn":783605591,"channel_id":3}
-//dnbo10
-//curl -H "content-type:application/json" -X POST http://172.16.64.98:6061/dnbo-engine/PresentOffers -d {msisdn:783605591,channel_id:3,sales_channel_id:3}

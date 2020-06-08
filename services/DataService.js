@@ -37,14 +37,20 @@ if (datas === undefined) {
               delete data.offer_category_name
               delete data.action_type_name
               delete data.offer_type_name
-              data.routeName = "static"
+            //  data.routeName = "static"
               data.Offer_code = offerData.getoffersById(data.offer_id).offer_code
               data.price = offerData.getoffersById(data.offer_id).price
 
     }
 
+    const dnboData = {
 
- return datas
+        routeName : "static",
+        data : datas
+    }
+
+
+ return dnboData
 }
 
 
@@ -59,18 +65,24 @@ labeleOffers10(datas){
     
         for (let  data of datas){
           
-            delete data.action_type_name
-            delete data.offer_type_name
-            data.routeName = "dynamic"
-            // TODO ADD offer_Code to the output
-            // data.Offer_code = offerData.getoffersById(data.offer_id)[0].offer_code
-          //  data.price = offerData.getoffersById(data.offer_id)[0].price
-          // 16
-    
+          data.offer_code = data.offer_code
+          data.offer_name = data.offer_name
+          data.offer_short_description = data.offer_short_description
+          data.position = parseFloat(data.position)
+          data.price = parseFloat(data.price)
+          data.score = parseFloat(data.score)  
+          data.offer_id = parseFloat(data.offer_id)
         }
+
+        
+    const dnboData = {
+
+        routeName : "dynamic",
+        data : datas
+    }
     
     
-     return datas
+     return dnboData
     }
     
 
