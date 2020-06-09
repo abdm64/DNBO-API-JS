@@ -1,0 +1,98 @@
+[
+  {
+    "channel_id": 1,
+    "channel name": "Ussd44",
+    "channel05": 5,
+    "channel10": 1
+  },
+  {
+    "channel_id": 2,
+    "channel name": "Ussd760",
+    "channel05": 7,
+    "channel10": 2
+  },
+  {
+    "channel_id": 3,
+    "channel name": "Ussd720",
+    "channel05": 8,
+    "channel10": 3
+  },
+  {
+    "channel_id": 4,
+    "channel name": "MobileApp",
+    "channel05": 4,
+    "channel10": 5
+  },
+  {
+    "channel_id": 5,
+    "channel name": "LandingPage",
+    "channel05": 9,
+    "channel10": 4
+  },
+  {
+    "channel_id": 6,
+    "channel name": "E-care",
+    "channel05": 10,
+    "channel10": 6
+  },
+  {
+    "channel_id": 7,
+    "channel name": "CSR DNBO",
+    "channel05": 1,
+    "channel10": -1
+  },
+  {
+    "channel_id": 8,
+    "channel name": "MobileAppV2",
+    "channel05": 12,
+    "channel10": 16
+  },
+  {
+    "channel_id": 9,
+    "channel name": "Web",
+    "channel05": 3,
+    "channel10": "/"
+  },
+  {
+    "channel_id": 10,
+    "channel name": "Snoc",
+    "channel05": 2,
+    "channel10": 14
+  },
+  {
+    "channel_id": 11,
+    "channel name": "App360",
+    "channel05": 11,
+    "channel10": 17
+  },
+  {
+    "channel_id": 13,
+    "channel name": "Sub menu 444-1",
+    "channel05": "",
+    "channel10": 9
+  },
+  {
+    "channel_id": 14,
+    "channel name": "Sub menu 444-2",
+    "channel05": "",
+    "channel10": 10
+  },
+  {
+    "channel_id": 15,
+    "channel name": "Sub menu 760",
+    "channel05": "",
+    "channel10": 11
+  },
+  {
+    "channel_id": 16,
+    "channel name": "Sub menu 720",
+    "channel05": "",
+    "channel10": 12
+  },
+  {
+    "channel_id": 20,
+    "channel name": "MobileAppv2_Shake_win",
+    "channel05": "",
+    "channel10": 18
+  }
+]

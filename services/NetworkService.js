@@ -1,5 +1,7 @@
 
 const axios = require('axios')
+const OfferData = require('../data/offerData');
+const offerData = new OfferData()
 
 
 'use strict';
@@ -8,7 +10,13 @@ class NetworkService {
 //DNBO 05
 async getOffers05(reqdata){
 
-    //  reqData if ( channel_id : -1 ) request data from redouane
+  
+    const sentData = {
+        msisdn : reqdata.msisdn,
+        channel_id : offerData.getChannel(reqdata.channel_id).channel05
+    }
+
+   
 
     const postOffersUrl = process.env.OFFERS05
     const auth =  {
@@ -19,7 +27,7 @@ async getOffers05(reqdata){
       var data;
 
 try {
- data = await axios.post(postOffersUrl, reqdata,{ auth : auth})
+ data = await axios.post(postOffersUrl, sentData,{ auth : auth})
 
 
 
@@ -38,12 +46,15 @@ return data
 //DNBO 1.0
 async getoffers01(reqdata){
 
+    
     const sentData = {
-
-        msisdn : reqdata.msisdn,
-        channel_id : reqdata.channel_id,
-        sales_channel_id : reqdata.channel_id
+      msisdn : reqdata.msisdn,
+      channel_id : offerData.getChannel(reqdata.channel_id).channel10,
+      sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10
+    
     }
+
+  
 
 
     const postOffersUrl = process.env.OFFERS01
@@ -86,7 +97,7 @@ try {
 
 } catch(err){
 
-//console.log(err)
+
 
 
 
@@ -102,18 +113,7 @@ try {
 
     var data;
 
-    // try {
     
-    
-    
-    //  return data
-
-    // } catch(err){
-    
-    // console.log(err.message)
-    // return 
-  
-    // }
    return data = await axios.post(apiUrl, reqData)
    
 

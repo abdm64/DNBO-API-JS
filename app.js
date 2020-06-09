@@ -2,16 +2,22 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path')
 const offersController = require('./controller/OffersController')
 require('dotenv').config();
 
 
 
-
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+app.use(morgan('combined', { stream: accessLogStream }))
 
 app.use(cors()) 
 
-
+app.use(morgan('combined', {
+  skip: function (req, res) { return res.statusCode < 400 }
+}))
 
 app.use((req,res,next)=> {
   res.setHeader("Access-Control-Allow-Origin" ,"*");

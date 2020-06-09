@@ -10,10 +10,9 @@ class DataService {
 
 
 mergeOffers(offers05,offers10){
-    let dataArray = [ offers05,offers10];
-    let dataMerged = [].concat(...dataArray)
-   
-   // console.log(dataMerged)
+
+    let dataMerged = { ...offers05, ...offers10}
+
 
  
   

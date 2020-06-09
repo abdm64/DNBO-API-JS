@@ -49,7 +49,7 @@ exports.presentOffers = async (req,res) =>{
     }  catch(err){
       console.log(err)
 
-      res.status(200).json({
+      res.status(400).json({
         message: "no offer for you "
       })
        
