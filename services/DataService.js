@@ -10,8 +10,14 @@ class DataService {
 
 
 mergeOffers(offers05,offers10){
+   
+   
 
-    let dataMerged = { ...offers05, ...offers10}
+    let dataMerged = { 
+
+        static : offers05,
+        dynamic : offers10
+    }
 
 
  
@@ -37,19 +43,18 @@ if (datas === undefined) {
               delete data.action_type_name
               delete data.offer_type_name
             //  data.routeName = "static"
+              data.offer_id = data.offer_id
               data.Offer_code = offerData.getoffersById(data.offer_id).offer_code
+              data.offer_name = data.offer_name
               data.price = offerData.getoffersById(data.offer_id).price
+              data.position = data.position
 
     }
 
-    const dnboData = {
-
-        routeName : "static",
-        data : datas
-    }
+   
 
 
- return dnboData
+ return datas
 }
 
 
@@ -63,27 +68,56 @@ labeleOffers10(datas){
     } 
     
         for (let  data of datas){
+            delete data.action_type_name
+            delete data.offer_type_name
+            delete data.score
+            delete data.offer_short_description
+             data.offer_id = parseFloat(data.offer_id)
+             data.offer_code = data.offer_code
+             data.offer_name = data.offer_name
+            //data.offer_short_description = data.offer_short_description
+             data.price = parseFloat(data.price)
+             data.position = parseFloat(data.position)
           
-          data.offer_code = data.offer_code
-          data.offer_name = data.offer_name
-          data.offer_short_description = data.offer_short_description
-          data.position = parseFloat(data.position)
-          data.price = parseFloat(data.price)
-          data.score = parseFloat(data.score)  
-          data.offer_id = parseFloat(data.offer_id)
         }
 
         
-    const dnboData = {
+    
+    
+    
+     return datas
+    }
 
-        routeName : "dynamic",
-        data : datas
+     switchData(dataOffers05,dataOffers10,res){
+
+
+
+
+       
+      if ( dataOffers05 === undefined) {
+          
+        const data10 = this.labeleOffers10(dataOffers10.data)
+        res.status(200).send(data10)
+
+      } else if ( dataOffers10 === undefined) {
+       
+        const data05 = this.labeleOffers05(dataOffers05.data)
+        res.status(200).send(data05)
+
+      }else if  (dataOffers10 === undefined && dataOffers05 === undefined ) {
+
+     
+        
+
+      } else{
+
+           const data05 = this.labeleOffers05(dataOffers05.data)
+           const data10 = this.labeleOffers10(dataOffers10.data)
+           const dataMerged = this.mergeOffers(data05,data10)
+           res.status(200).send(dataMerged)
+      }
     }
     
-    
-     return dnboData
-    }
-    
 
 
 
@@ -92,7 +126,7 @@ labeleOffers10(datas){
 
 
 
-}
+}//Class 
 
 
 module.exports = DataService;

@@ -1,42 +1,37 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const cors = require('cors');
-const morgan = require('morgan');
-const fs = require('fs');
-const path = require('path')
+const logger = require('morgan');
 const offersController = require('./controller/OffersController')
+const fs = require('fs');
 require('dotenv').config();
 
 
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-app.use(morgan('combined', { stream: accessLogStream }))
 
-app.use(cors()) 
 
-app.use(morgan('combined', {
-  skip: function (req, res) { return res.statusCode < 400 }
-}))
 
-app.use((req,res,next)=> {
-  res.setHeader("Access-Control-Allow-Origin" ,"*");
-  res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type , Accept"
-  );
-  res.setHeader(
-      "Access-Control-Allow-Methods",
-      "GET ,POST, PATCH, DELETE, OPTIONS"
-  );
-  next();
-});
+
+app.use(logger('common', {
+    stream: fs.createWriteStream('./logs.log', {flags: 'a'})
+}));
+
+
+// app.use(   morgan('combined', { stream: accessLogStream }, {
+//   skip: function (req, res) { return res.statusCode === 200 }
+// } ))
+
+
+// app.use( morgan('combined', {
+//   skip: function (req, res) { return res.statusCode < 400 }
+// } ))
+
 
 
 app.use(bodyParser.json());
 
-
-app.get('/api/v1',(req,res)=>{
+// satrt  end point API 
+app.get('/dnbo-dte/api/v1',(req,res)=>{
 
 
     res.status(201).json({
@@ -48,12 +43,14 @@ app.get('/api/v1',(req,res)=>{
 
 
 
-  app.post('/Evolving/Api/Evolution/PresentOffers',offersController.presentOffers);
+  app.post('/dnbo-dte/api/v1/PresentOffers',offersController.presentOffers);
 
 
-  app.post('/Evolving/Api/Evolution/Acceptoffer',offersController.acceptOffer );
+  app.post('/dnbo-dte/api/v1/Acceptoffer',offersController.acceptOffer);
   
 
+
+  
 
 
   app.listen(3000, ()  => {

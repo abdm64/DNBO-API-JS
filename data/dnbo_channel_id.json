@@ -51,7 +51,7 @@
     "channel_id": 9,
     "channel name": "Web",
     "channel05": 3,
-    "channel10": "/"
+    "channel10": 0
   },
   {
     "channel_id": 10,
@@ -68,31 +68,31 @@
   {
     "channel_id": 13,
     "channel name": "Sub menu 444-1",
-    "channel05": "",
+    "channel05": 0,
     "channel10": 9
   },
   {
     "channel_id": 14,
     "channel name": "Sub menu 444-2",
-    "channel05": "",
+    "channel05": 0,
     "channel10": 10
   },
   {
     "channel_id": 15,
     "channel name": "Sub menu 760",
-    "channel05": "",
+    "channel05": 0,
     "channel10": 11
   },
   {
     "channel_id": 16,
     "channel name": "Sub menu 720",
-    "channel05": "",
+    "channel05": 0,
     "channel10": 12
   },
   {
     "channel_id": 20,
     "channel name": "MobileAppv2_Shake_win",
-    "channel05": "",
+    "channel05": 0,
     "channel10": 18
   }
 ]

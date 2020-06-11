@@ -13,7 +13,7 @@ async getOffers05(reqdata){
   
     const sentData = {
         msisdn : reqdata.msisdn,
-        channel_id : offerData.getChannel(reqdata.channel_id).channel05
+        channel_id : offerData.getChannel(reqdata.channel_id).channel05 || 0
     }
 
    
@@ -49,8 +49,8 @@ async getoffers01(reqdata){
     
     const sentData = {
       msisdn : reqdata.msisdn,
-      channel_id : offerData.getChannel(reqdata.channel_id).channel10,
-      sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10
+      channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
+      sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0
     
     }
 
@@ -67,7 +67,7 @@ try {
 
 } catch(err){
 
-//console.log(err)
+
 
 
 
@@ -98,7 +98,7 @@ try {
 } catch(err){
 
 
-
+//console.log(err)
 
 
 }
