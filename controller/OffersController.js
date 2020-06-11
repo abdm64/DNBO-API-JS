@@ -34,30 +34,37 @@ exports.presentOffers = async (req,res) =>{
 exports.acceptOffer = async (req,res)=>{
 
     const reqdata = req.body
+    const offer10 = dataService.checkOffer10(reqdata.offer_id)
     var data;
+
+    
+    
     
 
     try {
 
       // route using  offer_id 
   
-     if ( reqdata.routeName === "static") {
+     if ( offer10 === true) {
+       console.log("offer10");
+       
+
+   await networkService.acceptOffer10(reqdata,res)
   
-  
-     await networkService.acceptOffer05(reqdata)
-     res.sendStatus(200)
+    
    
 
 
   
-     } else if  ( reqdata.routeName === "dynamic") {
+     } else {
+
+      console.log("offer05");
+await networkService.acceptOffer05(reqdata,res)
+
   
-  
-   await networkService.acceptOffer10(reqdata)
-  res.sendStatus(200)
    
      }
-     console.log(data)
+ 
       
   
   
@@ -66,7 +73,7 @@ exports.acceptOffer = async (req,res)=>{
 
 console.log(err.message)
       
-      res.status(500).json({
+      res.status(400).json({
        
         message : "somthing goes wrong"
 
@@ -81,4 +88,4 @@ console.log(err.message)
   
   
   
-  }
+  }//Class

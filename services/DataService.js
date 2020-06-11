@@ -38,15 +38,15 @@ if (datas === undefined) {
 
 
     for (let  data of datas){
-        
+             const offerID = data.offer_id
               delete data.offer_category_name
               delete data.action_type_name
               delete data.offer_type_name
             //  data.routeName = "static"
-              data.offer_id = data.offer_id
-              data.Offer_code = offerData.getoffersById(data.offer_id).offer_code
+              data.offer_id = parseFloat(offerID) + 0.5
+              data.Offer_code = offerData.getoffersById(offerID).offer_code
               data.offer_name = data.offer_name
-              data.price = offerData.getoffersById(data.offer_id).price
+              data.price = offerData.getoffersById(offerID).price
               data.position = data.position
 
     }
@@ -68,11 +68,12 @@ labeleOffers10(datas){
     } 
     
         for (let  data of datas){
+            const offerID = data.offer_id
             delete data.action_type_name
             delete data.offer_type_name
             delete data.score
             delete data.offer_short_description
-             data.offer_id = parseFloat(data.offer_id)
+             data.offer_id = parseFloat(offerID) + 0.1
              data.offer_code = data.offer_code
              data.offer_name = data.offer_name
             //data.offer_short_description = data.offer_short_description
@@ -94,19 +95,29 @@ labeleOffers10(datas){
 
 
        
-      if ( dataOffers05 === undefined) {
+      if ( dataOffers05.data === undefined) {
           
         const data10 = this.labeleOffers10(dataOffers10.data)
-        res.status(200).send(data10)
+        res.status(200).json({
+            dynamic: data10,
+            static: "errMessge"
+            
+        })
 
-      } else if ( dataOffers10 === undefined) {
+      } else if ( dataOffers10.data === undefined) {
        
         const data05 = this.labeleOffers05(dataOffers05.data)
-        res.status(200).send(data05)
+        res.status(200).json({
+            static: data05,
+            dynamic : dataOffers10
+        })
 
-      }else if  (dataOffers10 === undefined && dataOffers05 === undefined ) {
+      }else if  (dataOffers10.data === undefined && dataOffers05.data === undefined ) {
 
-     
+        res.status(400).json({
+            message: "no offer for you "
+          })
+           
         
 
       } else{
@@ -116,6 +127,16 @@ labeleOffers10(datas){
            const dataMerged = this.mergeOffers(data05,data10)
            res.status(200).send(dataMerged)
       }
+    }
+
+    checkOffer10(offer_id){
+        
+        const offer = parseInt(offer_id.toString().split(".")[1])
+       
+
+            
+        return offer === 1
+            
     }
     
 

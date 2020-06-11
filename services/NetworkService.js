@@ -2,6 +2,7 @@
 const axios = require('axios')
 const OfferData = require('../data/offerData');
 const offerData = new OfferData()
+var errer;
 
 
 'use strict';
@@ -33,7 +34,15 @@ try {
 
 } catch(err){
 
-//console.log(err)
+  const error = err.response.data
+  const errorResponse = {
+    errMessage :error.ErrorMessage, 
+    errCode :error.ErrorCode 
+  }
+  
+  
+  //store err 
+  return errorResponse
 
 
 
@@ -66,10 +75,16 @@ try {
 
 
 } catch(err){
+const error = err.response.data
+
+const errorResponse = {
+  errMessage :error.ErrorMessage, 
+  errCode :error.ErrorCode 
+}
 
 
 
-
+return errorResponse
 
 }
 return data
@@ -78,7 +93,17 @@ return data
 }
 
 
-  async acceptOffer05(reqData) {
+  async acceptOffer05(reqData,res) {
+    const offerId = parseFloat(reqData.offer_id)
+
+    const sentData = {
+      msisdn : reqData.msisdn,
+      offer_code : reqData.Offer_code,
+      offer_id : offerId - 0.5,
+      position : reqData.position,
+      channel_id : offerData.getChannel(reqData.channel_id).channel05
+    }
+    console.log(sentData)
 
     const apiUrl = process.env.ACCEPT05
 
@@ -91,13 +116,16 @@ return data
 
 try {
 
- await axios.post(apiUrl, reqData,{ auth : auth})
+ await axios.post(apiUrl, sentData,{ auth : auth})
 
-
+ res.status(200).send()
 
 } catch(err){
 
-
+  res.status(400).json({
+    message: err
+  })
+   
 //console.log(err)
 
 
@@ -105,16 +133,36 @@ try {
 
 
 }
- async acceptOffer10(reqData){
-   console.log("accept offer 10");
+ async acceptOffer10(reqData,res){
+  const offerId = parseFloat(reqData.offer_id)
+
+  const sentData = {
+    msisdn : reqData.msisdn,
+    offer_code : reqData.offer_code,
+    offer_id : offerId - 0.1,
+    position : reqData.position,
+    channel_id : offerData.getChannel(reqData.channel_id).channel10
+  }
+  console.log(sentData)
    
     const apiUrl = process.env.ACCEPT01
 
 
-    var data;
+   
 
+    try {
+
+      await axios.post(apiUrl, sentData)
+      res.status(200).send()
+    } catch(e) {
+
+      res.status(400).json({
+        message: e
+      })
+       
+    //  console.log(e)
+    }
     
-   return data = await axios.post(apiUrl, reqData)
    
 
 
