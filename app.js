@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const logger = require('morgan');
 const offersController = require('./controller/OffersController')
 const fs = require('fs');
+const helmet = require('helmet')
+const xss = require('xss')
 require('dotenv').config();
 
 
@@ -15,6 +17,8 @@ require('dotenv').config();
 app.use(logger('common', {
     stream: fs.createWriteStream('./logs.log', {flags: 'a'})
 }));
+ app.use(helmet())
+//  app.use(xss)
 
 
 // app.use(   morgan('combined', { stream: accessLogStream }, {
@@ -54,6 +58,6 @@ app.get('/dnbo-dte/api/v1',(req,res)=>{
 
 
   app.listen(3000, ()  => {
-    console.log('app listening on port ' + 3000);
+    console.log('DNBO listening on port ' + 3000);
 });
 

@@ -103,7 +103,7 @@ return data
       position : reqData.position,
       channel_id : offerData.getChannel(reqData.channel_id).channel05
     }
-    console.log(sentData)
+    //console.log(sentData)
 
     const apiUrl = process.env.ACCEPT05
 
@@ -143,7 +143,7 @@ try {
     position : reqData.position,
     channel_id : offerData.getChannel(reqData.channel_id).channel10
   }
-  console.log(sentData)
+  //console.log(sentData)
    
     const apiUrl = process.env.ACCEPT01
 

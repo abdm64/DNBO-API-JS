@@ -43,7 +43,7 @@ if (datas === undefined) {
               delete data.action_type_name
               delete data.offer_type_name
             //  data.routeName = "static"
-              data.offer_id = parseFloat(offerID) + 0.5
+              data.offer_id = parseFloat((offerID.toString() + '5')) 
               data.Offer_code = offerData.getoffersById(offerID).offer_code
               data.offer_name = data.offer_name
               data.price = offerData.getoffersById(offerID).price
@@ -68,12 +68,13 @@ labeleOffers10(datas){
     } 
     
         for (let  data of datas){
-            const offerID = data.offer_id
+
+            const offerID = data.offer_id.toString() + '1'
             delete data.action_type_name
             delete data.offer_type_name
             delete data.score
             delete data.offer_short_description
-             data.offer_id = parseFloat(offerID) + 0.1
+             data.offer_id = parseFloat(offerID) 
              data.offer_code = data.offer_code
              data.offer_name = data.offer_name
             //data.offer_short_description = data.offer_short_description
@@ -99,8 +100,8 @@ labeleOffers10(datas){
           
         const data10 = this.labeleOffers10(dataOffers10.data)
         res.status(200).json({
-            dynamic: data10,
-            static: "errMessge"
+            dynamic: dataOffers10,
+            static: dataOffers05
             
         })
 
@@ -115,7 +116,8 @@ labeleOffers10(datas){
       }else if  (dataOffers10.data === undefined && dataOffers05.data === undefined ) {
 
         res.status(400).json({
-            message: "no offer for you "
+            dynamic: dataOffers10,
+            static: dataOffers05
           })
            
         
@@ -130,12 +132,15 @@ labeleOffers10(datas){
     }
 
     checkOffer10(offer_id){
+        const offerStr = offer_id.toString()
+        const offer10  = parseInt(offerStr.slice(-1))
         
-        const offer = parseInt(offer_id.toString().split(".")[1])
+        console.log(offer10)
        
 
             
-        return offer === 1
+        return offer10 === 1
+      
             
     }
     

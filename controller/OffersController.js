@@ -46,10 +46,25 @@ exports.acceptOffer = async (req,res)=>{
       // route using  offer_id 
   
      if ( offer10 === true) {
-       console.log("offer10");
+
+
+     const datastr = {
+
+      offer_code : reqdata.offer_code,
+      offer_name : reqdata.offer_name,
+      position : reqdata.position.toString(),
+      price : reqdata.price.toString(),
+      msisdn : reqdata.msisdn,
+      channel_id : reqdata.channel_id,
+      offer_id : reqdata.offer_id.toString()
+    
+     
+   
+
+     }
        
 
-   await networkService.acceptOffer10(reqdata,res)
+   await networkService.acceptOffer10(datastr,res)
   
     
    
@@ -58,7 +73,7 @@ exports.acceptOffer = async (req,res)=>{
   
      } else {
 
-      console.log("offer05");
+     // console.log("offer05");
 await networkService.acceptOffer05(reqdata,res)
 
   
