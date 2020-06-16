@@ -29,44 +29,60 @@ return dataMerged
 
 }
 
-labeleOffers05(datas){
+labeleOffers05(datas,position){
+   
   
-if (datas === undefined) {
+if (position !== undefined) {
 
-    return
-} 
-
+    console.log("definedPostion05")
+    this.addPosition(datas,position)
+    
+}  else {
 
     for (let  data of datas){
-             const offerID = data.offer_id
-              delete data.offer_category_name
-              delete data.action_type_name
-              delete data.offer_type_name
-            //  data.routeName = "static"
-              data.offer_id = parseFloat((offerID.toString() + '5')) 
-              data.Offer_code = offerData.getoffersById(offerID).offer_code
-              data.offer_name = data.offer_name
-              data.price = offerData.getoffersById(offerID).price
-              data.position = data.position
+        const offerID = data.offer_id
+         delete data.offer_category_name
+         delete data.action_type_name
+         delete data.offer_type_name
+       //  data.routeName = "static"
+         data.offer_id = parseFloat((offerID.toString() + '5')) 
+         data.Offer_code = offerData.getoffersById(offerID).offer_code
+         data.offer_name = data.offer_name
+         data.price = offerData.getoffersById(offerID).price
+         data.position = data.position
 
-    }
-
-   
-
-
- return datas
 }
 
 
 
-labeleOffers10(datas){
+
+return datas
+
+
+// {"msisdn":783605591,"channel_id": 8, "postion" : {
+// 	"in" : [2,4,6],
+// 	"notIn" : [20,13,15]
+// }  }
+
+
+}
+//TODO send data using postion  
+
+
+ 
+}
+
+
+
+labeleOffers10(datas,position){
+   
     
   
-    if (datas === undefined) {
-    
-        return
-    } 
-    
+    if (position !== undefined) {
+       
+       
+    } else {
+
         for (let  data of datas){
 
             const offerID = data.offer_id.toString() + '1'
@@ -77,7 +93,6 @@ labeleOffers10(datas){
              data.offer_id = parseFloat(offerID) 
              data.offer_code = data.offer_code
              data.offer_name = data.offer_name
-            //data.offer_short_description = data.offer_short_description
              data.price = parseFloat(data.price)
              data.position = parseFloat(data.position)
           
@@ -88,9 +103,12 @@ labeleOffers10(datas){
     
     
      return datas
+
+    }
+    
     }
 
-     switchData(dataOffers05,dataOffers10,res){
+     switchData(dataOffers05,dataOffers10,res,position){
 
 
 
@@ -98,7 +116,7 @@ labeleOffers10(datas){
        
       if ( dataOffers05.data === undefined) {
           
-        const data10 = this.labeleOffers10(dataOffers10.data)
+        const data10 = this.labeleOffers10(dataOffers10.data,position)
         res.status(200).json({
             dynamic: dataOffers10,
             static: dataOffers05
@@ -107,7 +125,7 @@ labeleOffers10(datas){
 
       } else if ( dataOffers10.data === undefined) {
        
-        const data05 = this.labeleOffers05(dataOffers05.data)
+        const data05 = this.labeleOffers05(dataOffers05.data,position)
         res.status(200).json({
             static: data05,
             dynamic : dataOffers10
@@ -124,11 +142,40 @@ labeleOffers10(datas){
 
       } else{
 
-           const data05 = this.labeleOffers05(dataOffers05.data)
-           const data10 = this.labeleOffers10(dataOffers10.data)
+           const data05 = this.labeleOffers05(dataOffers05.data,position)
+           const data10 = this.labeleOffers10(dataOffers10.data,position)
            const dataMerged = this.mergeOffers(data05,data10)
            res.status(200).send(dataMerged)
       }
+    }
+
+
+
+    addPosition(datas,position){
+        const notIn = position.notIn
+        const inn = position.in
+
+        for (let  data of datas){
+            const offerID = data.offer_id
+             delete data.offer_category_name
+             delete data.action_type_name
+             delete data.offer_type_name
+           //  data.routeName = "static"
+             data.offer_id = parseFloat((offerID.toString() + '5')) 
+             data.Offer_code = offerData.getoffersById(offerID).offer_code
+             data.offer_name = data.offer_name
+             data.price = offerData.getoffersById(offerID).price
+             data.position = data.position
+    
+    }
+
+ 
+        
+
+
+
+
+
     }
 
     checkOffer10(offer_id){

@@ -94,12 +94,12 @@ return data
 
 
   async acceptOffer05(reqData,res) {
-    const offerId = parseFloat(reqData.offer_id)
+    const offerId = parseFloat(offerData.stringFy10(reqData.offer_id))
 
     const sentData = {
       msisdn : reqData.msisdn,
       offer_code : reqData.Offer_code,
-      offer_id : offerId - 0.5,
+      offer_id : offerId,
       position : reqData.position,
       channel_id : offerData.getChannel(reqData.channel_id).channel05
     }
@@ -133,34 +133,43 @@ try {
 
 
 }
- async acceptOffer10(reqData,res){
-  const offerId = parseFloat(reqData.offer_id)
+ async acceptOffer10(reqdata,res){
+  //const offerId = parseFloat(reqData.offer_id)
+  console.log("accept10network");
+  
 
   const sentData = {
-    msisdn : reqData.msisdn,
-    offer_code : reqData.offer_code,
-    offer_id : offerId - 0.1,
-    position : reqData.position,
-    channel_id : offerData.getChannel(reqData.channel_id).channel10
-  }
-  //console.log(sentData)
+
+    Offer_code : reqdata.Offer_code,
+    offer_name : reqdata.offer_name,
+    position : reqdata.position.toString(),
+    price : reqdata.price.toString(),
+    msisdn : reqdata.msisdn,
+    channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
+    sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
+    offer_id : offerData.stringFy10(reqdata.offer_id)
+ 
+   }
+
+   console.log(sentData)
    
     const apiUrl = process.env.ACCEPT01
 
 
-   
+
 
     try {
 
       await axios.post(apiUrl, sentData)
       res.status(200).send()
     } catch(e) {
+      //console.log(e)
 
       res.status(400).json({
-        message: e
+        message: e.response.data
       })
        
-    //  console.log(e)
+    
     }
     
    

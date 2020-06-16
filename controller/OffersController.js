@@ -9,6 +9,9 @@ const dataService = new DataService()
 exports.presentOffers = async (req,res) =>{
 
     const reqdata = req.body
+    const postion = reqdata.postion
+
+  
     
 
     // only one response 
@@ -16,7 +19,7 @@ exports.presentOffers = async (req,res) =>{
 
       const dataOffers05 =  await networkService.getOffers05(reqdata)
       const dataOffers10  = await networkService.getoffers01(reqdata)
-      dataService.switchData(dataOffers05,dataOffers10,res)
+      dataService.switchData(dataOffers05,dataOffers10,res,postion)
 
 
     }  catch(err){
@@ -36,6 +39,7 @@ exports.acceptOffer = async (req,res)=>{
     const reqdata = req.body
     const offer10 = dataService.checkOffer10(reqdata.offer_id)
     var data;
+   
 
     
     
@@ -48,23 +52,12 @@ exports.acceptOffer = async (req,res)=>{
      if ( offer10 === true) {
 
 
-     const datastr = {
 
-      offer_code : reqdata.offer_code,
-      offer_name : reqdata.offer_name,
-      position : reqdata.position.toString(),
-      price : reqdata.price.toString(),
-      msisdn : reqdata.msisdn,
-      channel_id : reqdata.channel_id,
-      offer_id : reqdata.offer_id.toString()
-    
      
-   
-
-     }
+  
        
 
-   await networkService.acceptOffer10(datastr,res)
+   await networkService.acceptOffer10(reqdata,res)
   
     
    

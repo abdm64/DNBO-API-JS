@@ -21,6 +21,13 @@ class OfferData {
         return channelArray.filter( channel =>  channel.channel_id === id  )[0]
     }
 
+    stringFy10(offer_id){
+            const offerString = offer_id.toString()
+           let  str = offerString.slice(0, -1); 
+
+            return str
+    }
+
 
 
 
