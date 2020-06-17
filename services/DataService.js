@@ -1,5 +1,8 @@
 const OfferData = require('../data/offerData');
-const offerData = new OfferData()
+const FilterData = require('../data/filterData');
+
+const offerData = new OfferData();
+const filterData = new FilterData();
 
 
 
@@ -29,22 +32,15 @@ return dataMerged
 
 }
 
-labeleOffers05(datas,position){
+labeleOffers05(datas){
    
-  
-if (position !== undefined) {
 
-    console.log("definedPostion05")
-    this.addPosition(datas,position)
-    
-}  else {
 
     for (let  data of datas){
         const offerID = data.offer_id
          delete data.offer_category_name
          delete data.action_type_name
          delete data.offer_type_name
-       //  data.routeName = "static"
          data.offer_id = parseFloat((offerID.toString() + '5')) 
          data.Offer_code = offerData.getoffersById(offerID).offer_code
          data.offer_name = data.offer_name
@@ -53,35 +49,17 @@ if (position !== undefined) {
 
 }
 
-
-
-
 return datas
 
-
-// {"msisdn":783605591,"channel_id": 8, "postion" : {
-// 	"in" : [2,4,6],
-// 	"notIn" : [20,13,15]
-// }  }
-
-
-}
-//TODO send data using postion  
-
-
- 
 }
 
 
 
-labeleOffers10(datas,position){
+labeleOffers10(datas){
    
     
   
-    if (position !== undefined) {
-       
-       
-    } else {
+   
 
         for (let  data of datas){
 
@@ -104,30 +82,32 @@ labeleOffers10(datas,position){
     
      return datas
 
-    }
+    
     
     }
 
-     switchData(dataOffers05,dataOffers10,res,position){
+     switchData(dataOffers05,dataOffers10,res,postion){
 
-
+       
 
 
        
       if ( dataOffers05.data === undefined) {
           
-        const data10 = this.labeleOffers10(dataOffers10.data,position)
+        const data10 = this.labeleOffers10(dataOffers10.data)
+       
         res.status(200).json({
-            dynamic: dataOffers10,
+            dynamic: data10,
             static: dataOffers05
             
         })
 
       } else if ( dataOffers10.data === undefined) {
        
-        const data05 = this.labeleOffers05(dataOffers05.data,position)
+        const data05 = this.labeleOffers05(dataOffers05.data)
+        const dataFiltered05 = filterData.filterPostion(data05,postion)
         res.status(200).json({
-            static: data05,
+            static: dataFiltered05,
             dynamic : dataOffers10
         })
 
@@ -142,40 +122,13 @@ labeleOffers10(datas,position){
 
       } else{
 
-           const data05 = this.labeleOffers05(dataOffers05.data,position)
-           const data10 = this.labeleOffers10(dataOffers10.data,position)
-           const dataMerged = this.mergeOffers(data05,data10)
+           const data05 = this.labeleOffers05(dataOffers05.data)
+           const data10 = this.labeleOffers10(dataOffers10.data)
+           
+           const dataFiltered05 = filterData.filterPostionIn(data05,filterIn)
+           const dataMerged = this.mergeOffers(dataFiltered05,data10)
            res.status(200).send(dataMerged)
       }
-    }
-
-
-
-    addPosition(datas,position){
-        const notIn = position.notIn
-        const inn = position.in
-
-        for (let  data of datas){
-            const offerID = data.offer_id
-             delete data.offer_category_name
-             delete data.action_type_name
-             delete data.offer_type_name
-           //  data.routeName = "static"
-             data.offer_id = parseFloat((offerID.toString() + '5')) 
-             data.Offer_code = offerData.getoffersById(offerID).offer_code
-             data.offer_name = data.offer_name
-             data.price = offerData.getoffersById(offerID).price
-             data.position = data.position
-    
-    }
-
- 
-        
-
-
-
-
-
     }
 
     checkOffer10(offer_id){
@@ -193,6 +146,8 @@ labeleOffers10(datas,position){
     
 
 
+  
+
 
 
 
@@ -205,24 +160,3 @@ labeleOffers10(datas,position){
 module.exports = DataService;
 
 
-// [ {
-    //1
-//     "offer_id": 10261,
-
-//     "offer_name": "40= 60 Min Djezzy + 50 DA TOUS /24",
-//     "position": 2,
-//     "routeName": "static",
-//     "Offer_code": "BTLONNET60MINCROSSNET50DADAY",
-//     "price": 40
-//   }]
-
-// [ {
-//     "offer_code": "BTLINTSPEEDDAY250Mo",
-//     "offer_name": "UAT25Da=250Mo/24H",
-//     "offer_short_description": "UAT25Da=250Mo/24H",
-//     "position": "1",
-//     "price": "25.0",
-//     "score": "25",
-//     "offer_id": "106",
-//     "routeName": "dynamic"
-//   } ]

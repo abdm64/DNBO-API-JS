@@ -18,17 +18,6 @@ app.use(logger('common', {
     stream: fs.createWriteStream('./logs.log', {flags: 'a'})
 }));
  app.use(helmet())
-//  app.use(xss)
-
-
-// app.use(   morgan('combined', { stream: accessLogStream }, {
-//   skip: function (req, res) { return res.statusCode === 200 }
-// } ))
-
-
-// app.use( morgan('combined', {
-//   skip: function (req, res) { return res.statusCode < 400 }
-// } ))
 
 
 

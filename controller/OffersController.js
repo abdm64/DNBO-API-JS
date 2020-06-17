@@ -14,7 +14,7 @@ exports.presentOffers = async (req,res) =>{
   
     
 
-    // only one response 
+    
     try {
 
       const dataOffers05 =  await networkService.getOffers05(reqdata)
@@ -51,22 +51,9 @@ exports.acceptOffer = async (req,res)=>{
   
      if ( offer10 === true) {
 
-
-
-     
-  
-       
-
    await networkService.acceptOffer10(reqdata,res)
-  
-    
-   
-
-
-  
      } else {
 
-     // console.log("offer05");
 await networkService.acceptOffer05(reqdata,res)
 
   
