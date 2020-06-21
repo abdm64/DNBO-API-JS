@@ -9,7 +9,10 @@ const dataService = new DataService()
 exports.presentOffers = async (req,res) =>{
 
     const reqdata = req.body
-    const postion = reqdata.postion
+    const position = reqdata.postion
+    const reqPrams =  req.query
+    
+   
 
   
     
@@ -19,7 +22,7 @@ exports.presentOffers = async (req,res) =>{
 
       const dataOffers05 =  await networkService.getOffers05(reqdata)
       const dataOffers10  = await networkService.getoffers01(reqdata)
-      dataService.switchData(dataOffers05,dataOffers10,res,postion)
+      dataService.switchData(dataOffers05,dataOffers10,res,reqPrams)
 
 
     }  catch(err){

@@ -1,44 +1,10 @@
-
-
-
-
-
 class FilterData {
 
-    filterPostionIn(data,postion){
-
-        if ( postion === undefined) {
-
-            return data
-        } else {
-
-            let filterDataIn = [];
-        
-            for ( let i of postion){
-               
-            // const dataFiltered = data.filter( e => e.position === i ) 
-            
-                for ( let datae of data){
-                    if ( datae.position === i){
-    
-                        filterDataIn.push(datae)
-                    }
-    
-                }
-            
-            }
-    
-             
-    
-                return filterDataIn
-
-
-        }
-       
-    }
-
     filterPostion(data,postion){
-
+        const inn =  postion.in?.substring(1, postion.in?.length-1).split(',').map(Number)
+        const out =  postion.out?.substring(1, postion.out?.length-1).split(',').map(Number)
+        const ordr = postion.ordr
+      
 
         if ( postion === undefined){
 
@@ -47,21 +13,26 @@ class FilterData {
 
             return data
 
-        } else if ( postion.out === undefined) {
-            console.log(this.filterin(data,postion.in))
-
-          return  this.filterin(data,postion.in)
-          
-
-        } else if ( postion.in === undefined){
-          
+        } else if ( postion.out !== undefined) {
             
+            
+          return  this.filterout(data,out)
+           
+          
 
-            return this.filterout(data,postion.out)
+        } else if ( postion.in !== undefined){
+          
+           
+
+            return this.filterin(data,inn,ordr)
+        } else  if ( postion.ordr !== undefined ) {
+           
+           
+           return this.filterOrder(data,ordr)
+           
         } else {
-           
+
             return data
-           
         }
 
       
@@ -69,7 +40,7 @@ class FilterData {
 
     filterout(data,positionOut){
         
-      
+       
             
       
             for ( let j of positionOut){
@@ -86,9 +57,9 @@ class FilterData {
             
             }
     
-            
+            const fiterdD = this.filterOrder(data,ordr)
   
-                return data
+                return  filterdD
 
            
 
@@ -97,7 +68,7 @@ class FilterData {
 
     }
 
-    filterin(data,positionIn){
+    filterin(data,positionIn,ordr){
 
         let filterDataIn = [];
         
@@ -114,20 +85,27 @@ class FilterData {
             }
         
         }
-
+   const fiterdD = this.filterOrder(filterDataIn,ordr)
          
 
-            return filterDataIn
+            return  fiterdD
 
 
     }
 
     filterOrder(data,positionOrder){
 
-        
+        if (positionOrder === undefined){
+
+            return data
+        } else {
 
 
-        return data.slice(0,positionOrder)
+            return data.slice(0,positionOrder)
+        }
+
+
+       
 
 
     }

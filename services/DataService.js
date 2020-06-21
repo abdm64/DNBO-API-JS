@@ -58,30 +58,37 @@ return datas
 labeleOffers10(datas){
    
     
-  
+if ( datas === undefined){
+
+    return
+} else {
+
+    for (let  data of datas){
+
+        const offerID = data.offer_id.toString() + '1'
+        delete data.action_type_name
+        delete data.offer_type_name
+        delete data.score
+        delete data.offer_short_description
+         data.offer_id = parseFloat(offerID) 
+         data.offer_code = data.offer_code
+         data.offer_name = data.offer_name
+         data.price = parseFloat(data.price)
+         data.position = parseFloat(data.position)
+      
+    }
+
+    
+
+
+
+ return datas
+
+
+}
    
 
-        for (let  data of datas){
-
-            const offerID = data.offer_id.toString() + '1'
-            delete data.action_type_name
-            delete data.offer_type_name
-            delete data.score
-            delete data.offer_short_description
-             data.offer_id = parseFloat(offerID) 
-             data.offer_code = data.offer_code
-             data.offer_name = data.offer_name
-             data.price = parseFloat(data.price)
-             data.position = parseFloat(data.position)
-          
-        }
-
         
-    
-    
-    
-     return datas
-
     
     
     }
@@ -93,17 +100,18 @@ labeleOffers10(datas){
 
        
       if ( dataOffers05.data === undefined) {
-          
+        //console.log(dataOffers10)
         const data10 = this.labeleOffers10(dataOffers10.data)
        
         res.status(200).json({
-            dynamic: data10,
+            dynamic: dataOffers10,
             static: dataOffers05
             
         })
 
       } else if ( dataOffers10.data === undefined) {
        
+       // console.log(dataOffers05)
         const data05 = this.labeleOffers05(dataOffers05.data)
         const dataFiltered05 = filterData.filterPostion(data05,postion)
         res.status(200).json({
@@ -125,7 +133,7 @@ labeleOffers10(datas){
            const data05 = this.labeleOffers05(dataOffers05.data)
            const data10 = this.labeleOffers10(dataOffers10.data)
            
-           const dataFiltered05 = filterData.filterPostionIn(data05,filterIn)
+           const dataFiltered05 = filterData.filterPostion(data05,postion)
            const dataMerged = this.mergeOffers(dataFiltered05,data10)
            res.status(200).send(dataMerged)
       }
