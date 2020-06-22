@@ -99,11 +99,12 @@ if ( datas === undefined){
 
 
        
-      if ( dataOffers05.data === undefined) {
-        //console.log(dataOffers10)
-        const data10 = this.labeleOffers10(dataOffers10.data)
+      if ( dataOffers10.data === undefined && dataOffers05.data === undefined ) {
        
-        res.status(200).json({
+        
+         // numebr not found
+       
+        res.status(400).json({
             dynamic: dataOffers10,
             static: dataOffers05
             
@@ -111,25 +112,26 @@ if ( datas === undefined){
 
       } else if ( dataOffers10.data === undefined) {
        
-       // console.log(dataOffers05)
+        
         const data05 = this.labeleOffers05(dataOffers05.data)
+
         const dataFiltered05 = filterData.filterPostion(data05,postion)
         res.status(200).json({
             static: dataFiltered05,
             dynamic : dataOffers10
         })
 
-      }else if  (dataOffers10.data === undefined && dataOffers05.data === undefined ) {
-
-        res.status(400).json({
-            dynamic: dataOffers10,
+      }else if  (dataOffers05.data === undefined ) {
+       
+        res.status(200).json({
+            dynamic: this.labeleOffers10(dataOffers10.data),
             static: dataOffers05
           })
            
         
 
-      } else{
-
+      } else if  (dataOffers10.data !== undefined && dataOffers05.data !== undefined) {
+    
            const data05 = this.labeleOffers05(dataOffers05.data)
            const data10 = this.labeleOffers10(dataOffers10.data)
            
@@ -140,16 +142,12 @@ if ( datas === undefined){
     }
 
     checkOffer10(offer_id){
+
         const offerStr = offer_id.toString()
         const offer10  = parseInt(offerStr.slice(-1))
-        
-        console.log(offer10)
-       
-
-            
+           
         return offer10 === 1
-      
-            
+         
     }
     
 

@@ -16,7 +16,7 @@ class FilterData {
         } else if ( postion.out !== undefined) {
             
             
-          return  this.filterout(data,out)
+          return  this.filterout(data,out,ordr)
            
           
 
@@ -38,7 +38,7 @@ class FilterData {
       
     }
 
-    filterout(data,positionOut){
+    filterout(data,positionOut,ordr){
         
        
             
@@ -59,12 +59,7 @@ class FilterData {
     
             const fiterdD = this.filterOrder(data,ordr)
   
-                return  filterdD
-
-           
-
-        
-
+              return  fiterdD
 
     }
 
