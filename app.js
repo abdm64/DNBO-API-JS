@@ -3,16 +3,19 @@ const app = express()
 const bodyParser = require('body-parser')
 const logger = require('morgan');
 const offersController = require('./controller/OffersController')
+const dataController = require('./controller/DataController')
 const fs = require('fs');
 const helmet = require('helmet')
 const xss = require('xss')
+const fileUpload = require('express-fileupload');
+
 require('dotenv').config();
 
+app.use(fileUpload());
 
 
 
-
-
+//app.use(fileUpload)
 
 app.use(logger('common', {
     stream: fs.createWriteStream('./logs.log', {flags: 'a'})
@@ -40,6 +43,8 @@ app.get('/dnbo-dte/api/v1',(req,res)=>{
 
 
   app.post('/dnbo-dte/api/v1/Acceptoffer',offersController.acceptOffer);
+
+  app.post('/dnbo-dte/api/v1/upload',dataController.saveFile);
   
 
 

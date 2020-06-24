@@ -41,7 +41,7 @@ exports.acceptOffer = async (req,res)=>{
 
     const reqdata = req.body
     const offer10 = dataService.checkOffer10(reqdata.offer_id)
-    var data;
+   
    
 
     
