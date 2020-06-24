@@ -13,12 +13,12 @@ class OfferData {
     getoffersById(id){
 
         
-        return  offersArray.filter( offer => offer.offer_id === id )[0]
+        return  offersArray.filter( offer => offer.offer_id === id )[0] || 0 
     }
 
     getChannel(id){
        // console.log(channelArray)
-        return channelArray.filter( channel =>  channel.channel_id === id  )[0]
+        return channelArray.filter( channel =>  channel.channel_id === id  )[0] || 0 
     }
 
     stringFy10(offer_id){

@@ -29,7 +29,7 @@ exports.presentOffers = async (req,res) =>{
       console.log(err)
 
       res.status(400).json({
-        message: "no offer for you "
+        message: "Task failed successfully "
       })
        
       
