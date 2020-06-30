@@ -1,5 +1,5 @@
-const OfferData = require('../data/offerData');
-const FilterData = require('../data/filterData');
+const OfferData = require('../UploadsManager/offerData');
+const FilterData = require('../UploadsManager/filterData');
 
 const offerData = new OfferData();
 const filterData = new FilterData();

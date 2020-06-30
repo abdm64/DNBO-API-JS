@@ -1,24 +1,69 @@
 
+const multer = require('multer');
+const path = require('path');
 
 
-
-exports.saveFile =(req,res) => {
-console.log("uploaded")
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
-      }
-    
-      // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-      let sampleFile = req.files.sampleFile;
-    
-      // Use the mv() method to place the file somewhere on your server
-      sampleFile.mv('../uploads/', function(err) {
-        if (err)
-          return res.status(500).send(err);
-    
-        res.send('File uploaded!');
-      });
+// Set The Storage Engine
+const storage = multer.diskStorage({
+    destination: './uploads/',
+    filename: function(req, file, cb){
+      cb(null,file.fieldname +  path.extname(file.originalname));
     }
+  });
+  
+  // Init Upload
+  const upload = multer({
+    storage: storage,
+   
+    fileFilter: function(req, file, cb){
+      
+      checkFileType(file, cb);
+    }
+  }).single('offer_code_price');
+
+
+exports.saveFile = (req,res) => {
+        
+    console.log('offer_code_price is pushed')
+    upload(req, res, (err) => {
+        if(err){
+          res.status(400).json( {
+            msg: err
+          });
+        } else {
+          if(req.file == undefined){
+            res.status(400).json( {
+              msg: 'Error: No File Selected!'
+            });
+          } else {
+           
+            res.json( {
+              msg: 'File Uploaded!',
+              file: `uploads/${req.file.filename}`
+            });
+          }
+        }
+      })
+    
+    }
+
+
+    // Check File Type
+function checkFileType(file, cb){
+    // Allowed json
+    const filetypes = /json/;
+    // Check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime
+    const mimetype = filetypes.test(file.mimetype);
+  
+    if(mimetype && extname){
+      return cb(null,true);
+    } else {
+      cb('Error: json file Only!');
+    }
+  }
+  
 
     
 

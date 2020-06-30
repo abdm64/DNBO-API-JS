@@ -1,6 +1,6 @@
 
 const axios = require('axios')
-const OfferData = require('../data/offerData');
+const OfferData = require('../UploadsManager/offerData');
 const offerData = new OfferData()
 var errer;
 
