@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  dnbo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #We use proxy, so we don't want to access the dnbo-api  on port 3000, just on 8000
+    #ports:
+    #  - "9000:9000"  
+  nginx:
+     build:
+      context: ./nginx
+      dockerfile: Dockerfile
+     ports:
+        - "80:80" 
+        #port published by docker : port expose by docker image
