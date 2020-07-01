@@ -15,7 +15,7 @@ spec:
     spec:
       containers: 
       - name: dnbo-dte 
-        image: djezzy-api3:5000/dnbojs 
+        image: dmp-api-k8s-registry.com:443/dnbojs:v1 
         imagePullPolicy: IfNotPresent 
         ports: 
         - containerPort: 3000 
