@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dnbo
+  namespace: dnbo-test
+spec: 
+  replicas: 2 
+  selector: 
+    matchLabels:
+      app: nginx-dnbo
+  template: 
+    metadata:
+      labels: 
+        app: nginx-dnbo
+    spec:
+      containers: 
+      - name: dnbo-dte 
+        image: djezzy-api3:5000/nginx-dnbo
+        imagePullPolicy: IfNotPresent 
+        ports: 
+        - containerPort: 3000 
+          name: nginx-dnbo 

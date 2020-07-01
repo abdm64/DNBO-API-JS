@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnbo-dte 
+  namespace: dnbo-test
+spec: 
+  replicas: 2 
+  selector: 
+    matchLabels:
+      app: dnbo-dte 
+  template: 
+    metadata:
+      labels: 
+        app: dnbo-dte
+    spec:
+      containers: 
+      - name: dnbo-dte 
+        image: djezzy-api3:5000/dnbojs 
+        imagePullPolicy: IfNotPresent 
+        ports: 
+        - containerPort: 3000 
+          name: dnbo-dte-port 
