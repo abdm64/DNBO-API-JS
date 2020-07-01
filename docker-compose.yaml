@@ -1,14 +1,14 @@
 version: "3.3"
 
 services:
-  dnbo:
+  dnbo-dte:
     build:
-      context: .
+      context: ./api
       dockerfile: Dockerfile
     #We use proxy, so we don't want to access the dnbo-api  on port 3000, just on 8000
     #ports:
     #  - "9000:9000"  
-  nginx:
+  nginx-dnbo:
      build:
       context: ./nginx
       dockerfile: Dockerfile
