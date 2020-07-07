@@ -37,7 +37,8 @@ labeleOffers05(datas){
 
 
     for (let  data of datas){
-        const offerID = data.offer_id
+        
+         const offerID = data.offer_id
          delete data.offer_category_name
          delete data.action_type_name
          delete data.offer_type_name
@@ -56,7 +57,7 @@ return datas
 
 
 labeleOffers10(datas){
-   
+    
     
 if ( datas === undefined){
 

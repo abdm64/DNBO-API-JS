@@ -4,18 +4,18 @@ metadata:
   name: dnbo-dte 
   namespace: dnbo-test
 spec: 
-  replicas: 2 
+  replicas: 4 
   selector: 
     matchLabels:
-      app: dnbo-dte 
+        component: dnbo-dte-api 
   template: 
     metadata:
       labels: 
-        app: dnbo-dte
+        component: dnbo-dte-api 
     spec:
       containers: 
       - name: dnbo-dte 
-        image: dmp-api-k8s-registry.com:443/dnbojs:v1 
+        image: dmp-api-k8s-registry.com:443/dnbo-dte-api:v0.0.2
         imagePullPolicy: IfNotPresent 
         ports: 
         - containerPort: 3000 

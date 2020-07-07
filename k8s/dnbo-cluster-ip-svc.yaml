@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata: 
-    name: nginx-dnbo
+    name: dnbo-cluster-ip-service
     namespace: dnbo-test
 spec: 
   type: ClusterIP
@@ -9,7 +9,7 @@ spec:
     - port: 3000 #allow other pods access to this pod
       targetPort: 3000 #the target port of the containter
   selector: 
-    app: nginx-dnbo
+    component: dnbo-dte-api 
 
 
   
