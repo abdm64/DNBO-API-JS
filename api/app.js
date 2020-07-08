@@ -6,12 +6,22 @@ const offersController = require('./controller/OffersController')
 const dataController = require('./controller/DataController')
 const fs = require('fs');
 const helmet = require('helmet')
+const path = require('path');
 
 
 require('dotenv').config();
 
 
+app.use(express.static(__dirname + '/static'))
+//serve
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'static/index.html'), (err) => {
 
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
 
 app.use((req,res,next)=> {
   res.setHeader("Access-Control-Allow-Origin" ,"*");
