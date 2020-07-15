@@ -19,4 +19,6 @@ spec:
         imagePullPolicy: IfNotPresent 
         ports: 
         - containerPort: 3000 
-          name: dnbo-dte-port 
+          
+
+          

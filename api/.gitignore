@@ -12,6 +12,7 @@ access.log
 
 # dependencies
 /node_modules
+/static
 
 # profiling files
 chrome-profiler-events.json

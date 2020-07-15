@@ -17,6 +17,8 @@ spec:
               serviceName: dnbo-cluster-ip-service 
               servicePort: 3000
 
+              # docker build -t dnbo-dte-api
+
 
 
          
