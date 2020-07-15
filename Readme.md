@@ -20,8 +20,7 @@ You need to install the fellowing software in order to get the api up and runnin
 3- Start the api by running npm start from the command line in the api folder, you should see the message Server listening on port 3000. You can test the api directly using an application such as Postman or you can test it with one of the page web. 
 
  # Production environment
-
-
+TO DO 
 
 
 
