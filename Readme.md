@@ -3,7 +3,7 @@ API  allow To integrate both DNBO0.5 & DNBO1.0 in single API on the k8s platform
 
 ## api architecture
 
-![Alt text](./images/api-archi.png?raw=true "Title")
+![Alt text](./images/api-archi.PNG?raw=true "Title")
 
 ## Getting Started
 
@@ -20,7 +20,9 @@ You need to install the fellowing software in order to get the api up and runnin
  Download and Install node.js and NPM from https://nodejs.org/en/download/
  ## Running node.js api 
 1- Download or clone the project code from https://github.com/abdm64/DNBO-API-JS
+
 2- Install all required npm packages by running npm install from the command line in the api folder (where the package.json is located).
+
 3- Start the api by running npm start from the command line in the api folder, you should see the message Server listening on port 3000. You can test the api directly using an application such as Postman or you can test it with one of the page web. 
 
  # Production environment
