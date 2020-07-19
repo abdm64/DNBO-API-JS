@@ -29,6 +29,9 @@ You need to install the fellowing software in order to get the api up and runnin
 TO DO 
 
 
+## Deployment Architecture
+
+![Alt text](./images/dep-Archi.PNG?raw=true "Title")
 
 
     
