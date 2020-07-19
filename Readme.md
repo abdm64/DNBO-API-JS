@@ -1,6 +1,10 @@
 # DTE-DNBO-API 
 API  allow To integrate both DNBO0.5 & DNBO1.0 in single API on the k8s platform (single EndPoint) which will be used later as a communication interface with DNBO system and all other external/internal systems such as VAS, Snoc, DBSS
 
+## api architecture
+
+![Alt text](./images/api-archi.png?raw=true "Title")
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.

@@ -7,12 +7,13 @@ const dataService = new DataService()
 
 
 exports.presentOffers = async (req,res) =>{
+  console.log("fromjmeter")
 
     const reqdata = req.body
     const position = reqdata.postion
     const reqPrams =  req.query
     
-   
+   console.log(reqdata);
 
   
     
