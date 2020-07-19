@@ -123,7 +123,7 @@ try {
 } catch(err){
 
   res.status(400).json({
-    message: err
+    message: err.response.data
   })
    
 //console.log(err)
@@ -135,7 +135,7 @@ try {
 }
  async acceptOffer10(reqdata,res){
   //const offerId = parseFloat(reqData.offer_id)
-  console.log("accept10network");
+  //console.log("accept10network");
   
 
   const sentData = {
@@ -151,7 +151,7 @@ try {
  
    }
 
-   console.log(sentData)
+   //console.log(sentData)
    
     const apiUrl = process.env.ACCEPT01
 
