@@ -7,13 +7,16 @@ const dataService = new DataService()
 
 
 exports.presentOffers = async (req,res) =>{
-  console.log("fromjmeter")
+  
 
-    const reqdata = req.body
+    const reqdata = {
+      msisdn : parseInt(req.body.msisdn),
+      channel_id : parseInt(req.body.channel_id) 
+    }
     const position = reqdata.postion
     const reqPrams =  req.query
     
-   console.log(reqdata);
+ console.log(reqdata)
 
   
     

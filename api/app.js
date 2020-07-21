@@ -12,6 +12,8 @@ const path = require('path');
 require('dotenv').config();
 
 
+
+
 app.use(express.static(__dirname + '/static'))
 //serve
 app.get('/*', function(req, res) {
@@ -43,8 +45,8 @@ app.use(logger('common', {
  app.use(helmet())
 
 
+app.use(express.json())
 
-app.use(bodyParser.json());
 
 // satrt  end point API 
 app.get('/dnbo-dte/api/v1',(req,res)=>{

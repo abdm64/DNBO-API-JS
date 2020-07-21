@@ -97,11 +97,11 @@ return data
     const offerId = parseFloat(offerData.stringFy10(reqData.offer_id))
 
     const sentData = {
-      msisdn : reqData.msisdn,
-      offer_code : reqData.Offer_code,
+      msisdn : parseInt(reqData.msisdn),
+      offer_code : parseInt(reqData.Offer_code),
       offer_id : offerId,
-      position : reqData.position,
-      channel_id : offerData.getChannel(reqData.channel_id).channel05
+      position : parseInt(reqData.position),
+      channel_id : offerData.getChannel(parseInt(reqData.channel_id)).channel05
     }
     //console.log(sentData)
 
@@ -140,12 +140,12 @@ try {
 
   const sentData = {
 
-    Offer_code : reqdata.Offer_code,
+    Offer_code : parseInt(reqdata.Offer_code),
     offer_name : reqdata.offer_name,
     position : reqdata.position.toString(),
     price : reqdata.price.toString(),
-    msisdn : reqdata.msisdn,
-    channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
+    msisdn : parseInt(reqdata.msisdn),
+    channel_id : offerData.getChannel(parseInt(reqdata.channel_id)).channel10 || 0,
     sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
     offer_id : offerData.stringFy10(reqdata.offer_id)
  
