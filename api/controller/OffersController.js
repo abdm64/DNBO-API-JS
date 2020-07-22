@@ -11,12 +11,13 @@ exports.presentOffers = async (req,res) =>{
 
     const reqdata = {
       msisdn : parseInt(req.body.msisdn),
-      channel_id : parseInt(req.body.channel_id) 
+      channel_id : parseInt(req.body.channel_id) ,
+      language : req.body.language
     }
     const position = reqdata.postion
     const reqPrams =  req.query
     
- console.log(reqdata)
+ //console.log(reqdata)
 
   
     
