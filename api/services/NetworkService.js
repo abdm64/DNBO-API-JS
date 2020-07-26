@@ -17,6 +17,7 @@ async getOffers05(reqdata){
         channel_id : offerData.getChannel(reqdata.channel_id).channel05 || 0,
         language : reqdata.language
     }
+    //console.log(sentData);
 
    
 
@@ -61,11 +62,12 @@ async getoffers01(reqdata){
       msisdn : reqdata.msisdn,
       channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
       sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
-      language: reqdata.language
+      language:  this.getLanguage(reqdata.language)    
     
     }
+    
 
-  
+  //console.log(sentData);
 
 
     const postOffersUrl = process.env.OFFERS01
@@ -100,10 +102,12 @@ return data
 
     const sentData = {
       msisdn : parseInt(reqData.msisdn),
-      offer_code : parseInt(reqData.Offer_code),
+     // offer_code : parseInt(reqData.Offer_code),
       offer_id : offerId,
-      position : parseInt(reqData.position),
+      //price
+      
       channel_id : offerData.getChannel(parseInt(reqData.channel_id)).channel05
+      
     }
     //console.log(sentData)
 
@@ -142,10 +146,10 @@ try {
 
   const sentData = {
 
-    Offer_code : parseInt(reqdata.Offer_code),
-    offer_name : reqdata.offer_name,
-    position : reqdata.position.toString(),
-    price : reqdata.price.toString(),
+    //Offer_code : parseInt(reqdata.Offer_code),
+    // offer_name : reqdata.offer_name,
+    // position : reqdata.position.toString(),
+   // price : reqdata.price.toString(),
     msisdn : parseInt(reqdata.msisdn),
     channel_id : offerData.getChannel(parseInt(reqdata.channel_id)).channel10 || 0,
     sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
@@ -179,14 +183,29 @@ try {
 
 }
 
+getLanguage(lang){
+    
 
+  if (lang === "AR"){
 
+      return "ar-dz"
+  }else {
+
+    return lang
+  }
 
 
 
 
 
 }
+
+
+
+
+
+
+}//class
 
 
 module.exports = NetworkService;
