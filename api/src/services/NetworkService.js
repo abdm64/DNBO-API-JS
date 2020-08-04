@@ -109,7 +109,7 @@ return data
       channel_id : offerData.getChannel(parseInt(reqData.channel_id)).channel05
       
     }
-    //console.log(sentData)
+    console.log(sentData)
 
     const apiUrl = process.env.ACCEPT05
 

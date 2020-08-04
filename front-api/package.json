@@ -1,0 +1,28 @@
+{
+  "name": "front-api",
+  "version": "1.0.0",
+  "description": "app that serve  front app (angular or react ) with custom and secure api ",
+  "main": "app.js ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "express",
+    "web-token",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "abdem64",
+  "license": "MIT ",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.19",
+    "mongoose": "^5.9.27"
+  }
+}

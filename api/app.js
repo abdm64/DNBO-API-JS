@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const logger = require('morgan');
-const offersController = require('./controller/OffersController')
-const dataController = require('./controller/DataController')
+const offersController = require('./src/controller/OffersController')
+const dataController = require('./src/controller/DataController')
 const fs = require('fs');
 const helmet = require('helmet')
 const path = require('path');
@@ -14,10 +14,10 @@ require('dotenv').config();
 
 
 
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(__dirname + './src/static'))
 //serve
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'static/index.html'), (err) => {
+    res.sendFile(path.join(__dirname, './src/static/index.html'), (err) => {
 
       if (err) {
         res.status(500).send(err)
