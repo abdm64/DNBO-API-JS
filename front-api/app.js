@@ -54,7 +54,7 @@ app.get('/api/v1',(req,res)=>{
 app.get('/api/v1/data',(req,res)=>{
 
 
-  res.status(201).json(data);
+  res.status(201).json(data)
 
 })
 
