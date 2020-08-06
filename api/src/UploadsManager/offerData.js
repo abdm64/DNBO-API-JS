@@ -3,9 +3,9 @@
 
 
 const fs = require('fs');
-const offersArray = JSON.parse(fs.readFileSync('./uploads/offer_code_price.json', 'utf8'));
+const offersArray = JSON.parse(fs.readFileSync("../uploads/offer_code_price.json", 'utf8'));
 
-const channelArray = JSON.parse(fs.readFileSync('./uploads/dnbo_channel_id.json', 'utf8'));
+const channelArray = JSON.parse(fs.readFileSync('../uploads/dnbo_channel_id.json', 'utf8'));
 
 class OfferData {
 

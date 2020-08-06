@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dnbo-dte 
-  namespace: dnbo-test
+  namespace: dnbo-prod
 spec: 
   replicas: 4 
   selector: 
