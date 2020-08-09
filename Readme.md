@@ -24,14 +24,47 @@ You need to install the fellowing software in order to get the api up and runnin
 2- Install all required npm packages by running npm install from the command line in the api folder (where the package.json is located).
 
 3- Start the api by running npm start from the command line in the api folder, you should see the message Server listening on port 3000. You can test the api directly using an application such as Postman or you can test it with one of the page web. 
+# Testing environment with Docker
+1- Download and install docker in your machine
+2- inside the root folder run the fellowing cammand 
 
+```
+$docker-compose up 
+
+```
+and now the server live on the port 80 using nginx instance
+### Docker image 
+
+   Build your own docker image and push it to your repo  by running  "docker build -t my-app-name:v1 . "
+   from the cammand line in api folder you can push it to your own registy 
+
+
+ 
  # Production environment
-//TO DO 
+Deploying this app on kubernetes system can be so easy by applying the k8s yaml files, make sure that you upload the app image to the docker hub or private registry and change the image name config in stage-deployment.yaml  , then run "sudo kubectl apply -f k8s" from the cammand line in the root folder
+
+ Remember : "always you can change the config and the docker image" 
 
 
 ## Deployment Architecture
 
 ![Alt text](./images/dep-Archi.PNG?raw=true "Title")
+
+
+## Author
+
+* **Messelleka Abdellah** - *DevOps Engineer @* - [Djezzy](http://www.djezzy.dz/)
+
+
+
+## License
+
+This project is licensed under the MIT License 
+
+## Credits
+
+Made with ❤️ by Abdellah 
+
 
 
     
