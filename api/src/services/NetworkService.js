@@ -10,7 +10,7 @@ class NetworkService {
 
 
 //DBSS
-  async getDbss(reqData){
+  async getDbss(reqdata){
 
 
 
