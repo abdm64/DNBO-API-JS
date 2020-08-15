@@ -8,6 +8,14 @@ var errer;
 'use strict';
 class NetworkService {
 
+
+//DBSS
+  async getDbss(reqData){
+
+
+
+  }
+
 //DNBO 05
 async getOffers05(reqdata){
 

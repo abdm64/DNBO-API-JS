@@ -15,7 +15,7 @@ class OfferData {
     }
 
     getChannel(id){
-       // console.log(channelArray)
+   
         return channelArray.filter( channel =>  channel.channel_id === id  )[0] || 0 
     }
 
