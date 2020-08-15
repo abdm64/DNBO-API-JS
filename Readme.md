@@ -12,9 +12,10 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 You need to install the fellowing software in order to get the api up and running 
-    - Node.js and npm
-    - Docker
-    - Kubernetes on cloud
+
+ - Node.js and npm
+ - Docker
+ - Kubernetes on cloud
     
  # Development environment
  - Download and Install node.js and NPM from https://nodejs.org/en/download/
