@@ -15,7 +15,7 @@ spec:
     spec:
       containers: 
       - name: dnbo-dte 
-        image: dmp-api-k8s-registry.com:443/dnbo-dte-api:v0.0.2
+        image: dmp-api-k8s-registry.com:443/dnbo-dte-api:v0.0.2 # abdm6464/dte-dnbo:V0.0.8
         imagePullPolicy: IfNotPresent 
         ports: 
         - containerPort: 3000 

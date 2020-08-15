@@ -78,3 +78,5 @@ app.get('/dnbo-dte/api/v1',(req,res)=>{
     console.log('DNBO listening on port ' + 3000);
 });
 
+// docker tag local-image:tagname new-repo:tagname
+// docker push new-repo:tagnamedockerabdm
