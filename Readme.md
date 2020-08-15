@@ -12,22 +12,23 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 You need to install the fellowing software in order to get the api up and running 
-    1-node.js and npm
-    2-docker
-    3-kubernetes on cloud
+    - Node.js and npm
+    - Docker
+    - Kubernetes on cloud
     
  # Development environment
- Download and Install node.js and NPM from https://nodejs.org/en/download/
+ - Download and Install node.js and NPM from https://nodejs.org/en/download/
  ## Running node.js api 
-1- Download or clone the project code from https://github.com/abdm64/DNBO-API-JS
+- Download or clone the project code from https://github.com/abdm64/DNBO-API-JS
 
-2- Install all required npm packages by running npm install from the command line in the api folder (where the package.json is located).
+- Install all required npm packages by running npm install from the command line in the api folder (where the package.json is located).
 
-3- Start the api by running npm start from the command line in the api folder, you should see the message Server listening on port 3000. You can test the api directly using an application such as Postman or you can test it with one of the page web. 
+- Start the api by running npm start from the command line in the api folder, you should see the message Server listening on port 3000. You can test the api directly using an application such as Postman or you can test it with one of the page web. 
 # Testing environment with Docker
 
-1- Download and install docker in your machine
-2- inside the root folder run the fellowing cammand 
+- Download and install docker in your machine
+
+- inside the root folder run the fellowing cammand 
 
 ```
 $docker-compose up 
@@ -43,7 +44,7 @@ and now the server live on the port 80 using nginx instance
  
  # Production environment
 
-Deploying this app on kubernetes system can be so easy by applying the k8s yaml files, make sure that you upload the app image to the docker hub or private registry and change the image name config in dnbo-dep.yaml  , then run "sudo kubectl apply -f k8s" from the cammand line in the root folder.
+ Deploying this app on kubernetes system can be so easy by applying the k8s yaml files, make sure that you upload the app image to the docker hub or private registry and change the image name config in dnbo-dep.yaml  , then run "sudo kubectl apply -f k8s" from the cammand line in the root folder.
 
 Remember : you must install NGINX Ingress Controller on your k8s cluster before applying the final deployment please check this link https://kubernetes.github.io/ingress-nginx/deploy/ for more information
  
