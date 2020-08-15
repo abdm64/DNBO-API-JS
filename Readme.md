@@ -1,7 +1,7 @@
 # DTE-DNBO-API 
 API  allow To integrate both DNBO0.5 & DNBO1.0 in single API on the k8s platform (single EndPoint) which will be used later as a communication interface with DNBO system and all other external/internal systems such as VAS, Snoc, DBSS
 
-## api architecture
+## API Architecture
 
 ![Alt text](./images/api-archi.PNG?raw=true "Title")
 
@@ -38,16 +38,16 @@ $docker-compose up
 and now the server live on the port 80 using nginx instance
 ### Docker image 
 
-   Build your own docker image and push it to your repo  by running  "docker build -t my-app-name:v1 . "
+ -  Build your own docker image and push it to your repo  by running  "docker build -t my-app-name:v1 . "
    from the cammand line in api folder you can push it to your own registy 
 
 
  
  # Production environment
 
- Deploying this app on kubernetes system can be so easy by applying the k8s yaml files, make sure that you upload the app image to the docker hub or private registry and change the image name config in dnbo-dep.yaml  , then run "sudo kubectl apply -f k8s" from the cammand line in the root folder.
+- Deploying this app on kubernetes system can be so easy by applying the k8s yaml files, make sure that you upload the app image to the docker hub or private registry and change the image name config in dnbo-dep.yaml  , then run "sudo kubectl apply -f k8s" from the cammand line in the root folder.
 
-Remember : you must install NGINX Ingress Controller on your k8s cluster before applying the final deployment please check this link https://kubernetes.github.io/ingress-nginx/deploy/ for more information
+- PS : you must install NGINX Ingress Controller on your k8s cluster before applying the final deployment please check this link https://kubernetes.github.io/ingress-nginx/deploy/ for more information
  
 
 
