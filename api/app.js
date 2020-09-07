@@ -1,6 +1,7 @@
+//@ts-check
+
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
 const logger = require('morgan');
 const offersController = require('./src/controller/OffersController')
 const dataController = require('./src/controller/DataController')
@@ -79,4 +80,5 @@ app.get('/dnbo-dte/api/v1',(req,res)=>{
 });
 
 // docker tag local-image:tagname new-repo:tagname
+
 // docker push new-repo:tagnamedockerabdm

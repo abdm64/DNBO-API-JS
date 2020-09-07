@@ -1,33 +1,59 @@
-
+//@ts-check
 
 const Networks = require('../services/NetworkService')
 const DataService = require('../services/DataService')
+const RedisService = require('../services/RedisService')
+const FilterData = require('../UploadsManager/filterData')
 const networkService = new Networks()
 const dataService = new DataService()
+const redisService = new RedisService()
+const filterData = new FilterData()
 
 
-exports.presentOffers = async (req,res) =>{
+
+exports.presentOffers = async (req,res,next) =>{
   
-
+let msisdn = req.body.msisdn
+const channel_id = parseInt(req.body.channel_id) 
     const reqdata = {
       msisdn : parseInt(req.body.msisdn),
       channel_id : parseInt(req.body.channel_id) ,
       language : req.body.language
     }
-    const position = reqdata.postion
+ 
     const reqPrams =  req.query
     
- //console.log(reqdata)
-
+ // if channel id enter 
+  let redisData = await  redisService.getValue(msisdn)
+if ( channel_id === 18 && redisData !== null  ) {
+  let jsonData = JSON.parse(redisData)
   
-    
+  let static =    filterData.filterPostion(jsonData.static,reqPrams) 
+dataService.typeData(static,jsonData.dynamic,res,parseInt(reqPrams.type))
+ 
+} else {
+
+
+
 
     
     try {
 
       const dataOffers05 =  await networkService.getOffers05(reqdata)
       const dataOffers10  = await networkService.getoffers01(reqdata)
-      dataService.switchData(dataOffers05,dataOffers10,res,reqPrams)
+   
+      let sendData = {
+          msisdn: msisdn,
+          dataOffers05:dataOffers05,
+          dataOffers10:dataOffers10,
+          res:res,
+          reqPrams:reqPrams,
+          channel_id:channel_id
+      }
+     // dataService.switchData(msisdn,dataOffers05,dataOffers10,res,reqPrams)
+      dataService.switchData(sendData)
+    
+     
 
 
     }  catch(err){
@@ -40,6 +66,7 @@ exports.presentOffers = async (req,res) =>{
       
 
     }
+  }
 }
 
 exports.acceptOffer = async (req,res)=>{
@@ -56,6 +83,8 @@ exports.acceptOffer = async (req,res)=>{
     try {
 
       // route using  offer_id 
+  
+
   
      if ( offer10 === true) {
 

@@ -1,8 +1,11 @@
+//@ts-check
 const OfferData = require('../UploadsManager/offerData');
 const FilterData = require('../UploadsManager/filterData');
+const RedisService = require('./RedisService')
 
 const offerData = new OfferData();
 const filterData = new FilterData();
+const redisServie = new RedisService();
 
 
 
@@ -16,12 +19,15 @@ mergeOffers(offers05,offers10){
    
    
 
+  
+
     let dataMerged = { 
 
         static : offers05,
         dynamic : offers10
     }
 
+      
 
  
   
@@ -93,9 +99,17 @@ if ( datas === undefined){
     
     
     }
-
-     switchData(dataOffers05,dataOffers10,res,postion){
-
+   // switchData(msisdn,dataOffers05,dataOffers10,res,postion
+     switchData(sentData){
+         const msisdn = sentData.msisdn
+         const dataOffers10 = sentData.dataOffers10
+         const dataOffers05 = sentData.dataOffers05
+         const res = sentData.res
+         const reqPrams = sentData.reqPrams
+         const channel_id = sentData.channel_id
+        let typeInt = parseInt(reqPrams.type)
+        let saveData;
+        
        
 
 
@@ -104,41 +118,85 @@ if ( datas === undefined){
        
         
          // numebr not found
-       
-        res.status(400).json({
+         saveData = {
             dynamic: dataOffers10,
             static: dataOffers05
+         }
+         
+       
+        res.status(400).json({
+            static: dataOffers05,
+            dynamic: dataOffers10
+           
             
         })
+        if (channel_id === 18) {
+
+            redisServie.saveOffers(msisdn,saveData)
+
+        }
+       
+
 
       } else if ( dataOffers10.data === undefined) {
-       
-        
+     
         const data05 = this.labeleOffers05(dataOffers05.data)
+        const dataFiltered05 = filterData.filterPostion(data05,reqPrams )
+        this.typeData(dataFiltered05,dataOffers10,res,typeInt)
+  
+        
+                
+        saveData = {
+            static: data05,
+            dynamic: dataOffers10
+            
+        }
+        
+        if (channel_id === 18) {
+            redisServie.saveOffers(msisdn,saveData)
 
-        const dataFiltered05 = filterData.filterPostion(data05,postion)
-        res.status(200).json({
-            static: dataFiltered05,
-            dynamic : dataOffers10
-        })
+        }
+      
 
       }else if  (dataOffers05.data === undefined ) {
        
-        res.status(200).json({
-            dynamic: this.labeleOffers10(dataOffers10.data),
-            static: dataOffers05
-          })
+          let data10 = this.labeleOffers10(dataOffers10.data)
+         
+          this.typeData(dataOffers05,data10,res,typeInt)
+       
+         
+
+          saveData = {
+            static: dataOffers05,
+            dynamic: data10
+            
+         }
+   
+         if (channel_id === 18) {
+            redisServie.saveOffers(msisdn,saveData)
+
+        }
            
         
 
       } else if  (dataOffers10.data !== undefined && dataOffers05.data !== undefined) {
     
            const data05 = this.labeleOffers05(dataOffers05.data)
-           const data10 = this.labeleOffers10(dataOffers10.data)
-           
-           const dataFiltered05 = filterData.filterPostion(data05,postion)
-           const dataMerged = this.mergeOffers(dataFiltered05,data10)
-           res.status(200).send(dataMerged)
+           const data10 = this.labeleOffers10(dataOffers10.data) 
+           const dataFiltered05 = filterData.filterPostion(data05,reqPrams )
+           this.typeData(dataFiltered05,data10,res,typeInt)
+           saveData = {
+            static: data05,
+            dynamic: data10
+         }
+         
+
+         if (channel_id === 18) {
+            redisServie.saveOffers(msisdn,saveData)
+
+        }
+      
+
       }
     }
 
@@ -153,7 +211,34 @@ if ( datas === undefined){
     
 
 
+  typeData(data05,data10,res,typeInt){
+
+
+    
+    if ( typeInt === 0){
+        res.status(200).json(
+            data05
+          
+        )
+        
+
+    
+} else if ( typeInt === 1 ){
+    res.status(200).json(
+        
+        data10
+    )
+
   
+} else {
+    res.status(200).json({
+        static: data05,
+        dynamic : data10
+    })
+    
+}
+
+  }
 
 
 

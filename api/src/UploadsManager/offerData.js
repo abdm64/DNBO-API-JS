@@ -1,5 +1,5 @@
 
-
+//@ts-check
 
 const offersArray  = require('../uploads/offer_code_price.json')
 
@@ -15,7 +15,7 @@ class OfferData {
     }
 
     getChannel(id){
-   
+        
         return channelArray.filter( channel =>  channel.channel_id === id  )[0] || 0 
     }
 

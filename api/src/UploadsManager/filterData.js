@@ -1,9 +1,13 @@
+
+
+//@ts-check
 class FilterData {
 
     filterPostion(data,postion){
         const inn =  postion.in?.substring(1, postion.in?.length-1).split(',').map(Number)
         const out =  postion.out?.substring(1, postion.out?.length-1).split(',').map(Number)
         const ordr = postion.ordr
+        const type = parseInt(postion.type)
       
 
         if ( postion === undefined){
@@ -30,7 +34,7 @@ class FilterData {
            
            return this.filterOrder(data,ordr)
            
-        } else {
+        }  else {
 
             return data
         }
@@ -116,7 +120,21 @@ class FilterData {
 
 
 
+    filterType(data,type){
 
+
+        if (type === 0){
+
+            return data.static
+        } else if  (type === 1) {
+
+
+
+            return data.dynamic
+        }
+
+
+    }
 
 
 

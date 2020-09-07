@@ -17,19 +17,7 @@ var errer;
 class NetworkService {
 
 
-//DBSS
-  async getDbss(reqdata){
-    const DBSS_API_SUBS = process.env.DBSS_API_SUBS
-        let msisdn = reqdata.msisdn
-
-
-let res = await axios.get(DBSS_API_SUBS+msisdn)
-
-        let id = parseInt(res.data.data[0].id)
-        let paymentType = res.data.data[0].attributes["payment-type"] 
-
-
-  }
+  
 
 //DNBO 05
 async getOffers05(reqdata){
@@ -163,16 +151,12 @@ try {
 
 }
  async acceptOffer10(reqdata,res){
-  //const offerId = parseFloat(reqData.offer_id)
-  //console.log("accept10network");
+  
   
 
   const sentData = {
 
-    //Offer_code : parseInt(reqdata.Offer_code),
-    // offer_name : reqdata.offer_name,
-    // position : reqdata.position.toString(),
-   // price : reqdata.price.toString(),
+   
     msisdn : parseInt(reqdata.msisdn),
     channel_id : offerData.getChannel(parseInt(reqdata.channel_id)).channel10 || 0,
     sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
@@ -180,7 +164,7 @@ try {
  
    }
 
-   //console.log(sentData)
+ 
    
     const apiUrl = process.env.ACCEPT01
 
@@ -234,12 +218,3 @@ getLanguage(lang){
 module.exports = NetworkService;
 
 
-//  {
-// 	 	"msisdn":783605591,"channel_id": 3,
-//     "offer_id": 10261,
-//     "offer_name": "40= 60 Min Djezzy + 50 DA TOUS /24",
-//     "position": 2,
-//     "routeName": "static",
-//     "Offer_code": "BTLONNET60MINCROSSNET50DADAY",
-//     "price": 40
-//  }

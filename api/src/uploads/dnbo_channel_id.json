@@ -90,9 +90,16 @@
     "channel10": 12
   },
   {
-    "channel_id": 20,
+    "channel_id": 17,
     "channel name": "MobileAppv2_Shake_win",
     "channel05": "",
     "channel10": 18
+  },
+  {
+    "channel_id": 18,
+    "channel name": "facebookflex",
+    "channel05": "",
+    "channel10": 20
   }
+
 ]
