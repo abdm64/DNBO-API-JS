@@ -1,6 +1,7 @@
-
+require('dotenv').config();
 const asyncRedis = require("async-redis");
-const client = asyncRedis.createClient();
+let redisHost = process.env.REDIS_HOST || 'redis://127.0.0.1:6379' ;
+const client = asyncRedis.createClient( redisHost );
 
 
 
