@@ -1,7 +1,7 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: dnbo-prod # create name space for dnbo-prod
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: dnbo-prod # create name space for dnbo-prod
 ---
 apiVersion: v1
 kind: Service

@@ -1,13 +1,11 @@
 //@ts-check
 
-const Networks = require('../services/NetworkService')
-const DataService = require('../services/DataService')
-const RedisService = require('../services/RedisService')
-const FilterData = require('../UploadsManager/filterData')
-const networkService = new Networks()
-const dataService = new DataService()
-const redisService = new RedisService()
-const filterData = new FilterData()
+const networkService = require('../services/NetworkService')
+const dataService = require('../services/DataService')
+const redisService = require('../services/RedisService')
+const filterData = require('../UploadsManager/filterData')
+
+
 
 
 

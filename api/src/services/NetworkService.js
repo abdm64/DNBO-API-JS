@@ -1,7 +1,7 @@
 //@ts-check
 const axiosOne = require('axios')
-const OfferData = require('../UploadsManager/offerData');
-const offerData = new OfferData()
+const offerData  = require('../UploadsManager/offerData');
+
 
 const https = require('https');
 
@@ -14,13 +14,13 @@ var errer;
 
 
 'use strict';
-class NetworkService {
+
 
 
   
 
 //DNBO 05
-async getOffers05(reqdata){
+ const getOffers05 = async (reqdata)=>{
 
   
     const sentData = {
@@ -66,14 +66,14 @@ return data
 
 }
 //DNBO 1.0
-async getoffers01(reqdata){
+const getoffers01 = async (reqdata) =>{
 
     
     const sentData = {
       msisdn : reqdata.msisdn,
       channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
       sales_channel_id : offerData.getChannel(reqdata.channel_id).channel10 || 0,
-      language:  this.getLanguage(reqdata.language)    
+      language: getLanguage(reqdata.language)    
     
     }
     
@@ -108,7 +108,7 @@ return data
 }
 
 
-  async acceptOffer05(reqData,res) {
+  const acceptOffer05 = async (reqData,res) => {
     const offerId = parseFloat(offerData.stringFy10(reqData.offer_id))
 
     const sentData = {
@@ -150,7 +150,7 @@ try {
 
 
 }
- async acceptOffer10(reqdata,res){
+const  acceptOffer10 = async (reqdata,res) => {
   
   
 
@@ -190,7 +190,7 @@ try {
 
 }
 
-getLanguage(lang){
+const getLanguage =(lang) => {
     
 
   if (lang === "AR"){
@@ -212,9 +212,19 @@ getLanguage(lang){
 
 
 
-}//class
+
+module.exports ={
 
 
-module.exports = NetworkService;
+
+  getOffers05,
+  getoffers01, 
+  acceptOffer10, 
+  
+  acceptOffer05
+}
+
+
+
 
 

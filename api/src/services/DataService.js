@@ -1,21 +1,21 @@
 //@ts-check
-const OfferData = require('../UploadsManager/offerData');
-const FilterData = require('../UploadsManager/filterData');
-const RedisService = require('./RedisService')
-
-const offerData = new OfferData();
-const filterData = new FilterData();
-const redisServie = new RedisService();
+const offerData = require('../UploadsManager/offerData');
+const filterData = require('../UploadsManager/filterData');
+const redisService = require('./RedisService')
 
 
 
 
 
 
-class DataService {
 
 
-mergeOffers(offers05,offers10){
+
+
+
+
+
+const mergeOffers = (offers05,offers10) =>{
    
    
 
@@ -38,7 +38,7 @@ return dataMerged
 
 }
 
-labeleOffers05(datas){
+const labeleOffers05 = (datas) =>{ 
    
 
 
@@ -62,7 +62,7 @@ return datas
 
 
 
-labeleOffers10(datas){
+const labeleOffers10 = (datas) =>{ 
     
     
 if ( datas === undefined){
@@ -100,7 +100,7 @@ if ( datas === undefined){
     
     }
    // switchData(msisdn,dataOffers05,dataOffers10,res,postion
-     switchData(sentData){
+     const switchData = (sentData) =>{ 
          const msisdn = sentData.msisdn
          const dataOffers10 = sentData.dataOffers10
          const dataOffers05 = sentData.dataOffers05
@@ -132,7 +132,7 @@ if ( datas === undefined){
         })
         if (channel_id === 18) {
 
-            redisServie.saveOffers(msisdn,saveData)
+            redisService.saveOffers(msisdn,saveData)
 
         }
        
@@ -140,9 +140,9 @@ if ( datas === undefined){
 
       } else if ( dataOffers10.data === undefined) {
      
-        const data05 = this.labeleOffers05(dataOffers05.data)
+        const data05 = labeleOffers05(dataOffers05.data)
         const dataFiltered05 = filterData.filterPostion(data05,reqPrams )
-        this.typeData(dataFiltered05,dataOffers10,res,typeInt)
+      typeData(dataFiltered05,dataOffers10,res,typeInt)
   
         
                 
@@ -153,16 +153,16 @@ if ( datas === undefined){
         }
         
         if (channel_id === 18) {
-            redisServie.saveOffers(msisdn,saveData)
+            redisService.saveOffers(msisdn,saveData)
 
         }
       
 
       }else if  (dataOffers05.data === undefined ) {
        
-          let data10 = this.labeleOffers10(dataOffers10.data)
+          let data10 = labeleOffers10(dataOffers10.data)
          
-          this.typeData(dataOffers05,data10,res,typeInt)
+          typeData(dataOffers05,data10,res,typeInt)
        
          
 
@@ -173,7 +173,7 @@ if ( datas === undefined){
          }
    
          if (channel_id === 18) {
-            redisServie.saveOffers(msisdn,saveData)
+            redisService.saveOffers(msisdn,saveData)
 
         }
            
@@ -181,10 +181,10 @@ if ( datas === undefined){
 
       } else if  (dataOffers10.data !== undefined && dataOffers05.data !== undefined) {
     
-           const data05 = this.labeleOffers05(dataOffers05.data)
-           const data10 = this.labeleOffers10(dataOffers10.data) 
+           const data05 = labeleOffers05(dataOffers05.data)
+           const data10 = labeleOffers10(dataOffers10.data) 
            const dataFiltered05 = filterData.filterPostion(data05,reqPrams )
-           this.typeData(dataFiltered05,data10,res,typeInt)
+           typeData(dataFiltered05,data10,res,typeInt)
            saveData = {
             static: data05,
             dynamic: data10
@@ -192,7 +192,7 @@ if ( datas === undefined){
          
 
          if (channel_id === 18) {
-            redisServie.saveOffers(msisdn,saveData)
+            redisService.saveOffers(msisdn,saveData)
 
         }
       
@@ -200,7 +200,7 @@ if ( datas === undefined){
       }
     }
 
-    checkOffer10(offer_id){
+    const checkOffer10 = (offer_id) =>{ 
 
         const offerStr = offer_id.toString()
         const offer10  = parseInt(offerStr.slice(-1))
@@ -211,7 +211,7 @@ if ( datas === undefined){
     
 
 
-  typeData(data05,data10,res,typeInt){
+ const  typeData = (data05,data10,res,typeInt) =>{ 
 
 
     
@@ -246,9 +246,10 @@ if ( datas === undefined){
 
 
 
-}//Class 
+
+module.exports = { mergeOffers,labeleOffers05,labeleOffers10,switchData,checkOffer10 ,typeData}
 
 
-module.exports = DataService;
+
 
 

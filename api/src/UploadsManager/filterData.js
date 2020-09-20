@@ -1,9 +1,9 @@
 
 
 //@ts-check
-class FilterData {
 
-    filterPostion(data,postion){
+
+const     filterPostion = (data,postion) =>{
         const inn =  postion.in?.substring(1, postion.in?.length-1).split(',').map(Number)
         const out =  postion.out?.substring(1, postion.out?.length-1).split(',').map(Number)
         const ordr = postion.ordr
@@ -20,7 +20,7 @@ class FilterData {
         } else if ( postion.out !== undefined) {
             
             
-          return  this.filterout(data,out,ordr)
+          return  filterout(data,out,ordr)
            
           
 
@@ -28,11 +28,11 @@ class FilterData {
           
            
 
-            return this.filterin(data,inn,ordr)
+            return filterin(data,inn,ordr)
         } else  if ( postion.ordr !== undefined ) {
            
            
-           return this.filterOrder(data,ordr)
+           return filterOrder(data,ordr)
            
         }  else {
 
@@ -42,7 +42,7 @@ class FilterData {
       
     }
 
-    filterout(data,positionOut,ordr){
+ const filterout = (data,positionOut,ordr)=>{
         
        
             
@@ -53,7 +53,7 @@ class FilterData {
     
                 if( data[i].position === j) {
 
-                    this.removeElement(data,data[i])
+                   removeElement(data,data[i])
                       
     
                          }
@@ -61,13 +61,13 @@ class FilterData {
             
             }
     
-            const fiterdD = this.filterOrder(data,ordr)
+            const fiterdD = filterOrder(data,ordr)
   
               return  fiterdD
 
     }
 
-    filterin(data,positionIn,ordr){
+  const   filterin= (data,positionIn,ordr)=>{
 
         let filterDataIn = [];
         
@@ -84,7 +84,7 @@ class FilterData {
             }
         
         }
-   const fiterdD = this.filterOrder(filterDataIn,ordr)
+   const fiterdD = filterOrder(filterDataIn,ordr)
          
 
             return  fiterdD
@@ -92,7 +92,7 @@ class FilterData {
 
     }
 
-    filterOrder(data,positionOrder){
+  const filterOrder = (data,positionOrder) =>{
 
         if (positionOrder === undefined){
 
@@ -109,7 +109,7 @@ class FilterData {
 
     }
 
-     removeElement(array, elem) {
+   const  removeElement = (array, elem)=> {
         
         var index = array.indexOf(elem);
         if (index > -1) {
@@ -120,7 +120,7 @@ class FilterData {
 
 
 
-    filterType(data,type){
+  const  filterType = (data,type) =>{
 
 
         if (type === 0){
@@ -140,7 +140,16 @@ class FilterData {
 
 
 
-}// Class 
+//
 
 
-module.exports = FilterData;
+module.exports = {
+    filterType,
+    removeElement ,
+    filterOrder,
+    filterin,
+    filterout,
+    filterPostion ,
+
+
+}

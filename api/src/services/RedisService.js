@@ -6,10 +6,10 @@ const client = asyncRedis.createClient( redisHost );
 
 
 
- class RedisService {
 
 
-        saveOffers(msisdn ,data){
+
+  const saveOffers= (msisdn ,data) =>{
             const dataString = JSON.stringify(data)
             client.setex(msisdn,3600, dataString)   
 
@@ -20,7 +20,7 @@ const client = asyncRedis.createClient( redisHost );
        
   
 
-     getValue = async(msisdn) => {
+   const   getValue = async(msisdn) => {
         let val = await client.get(msisdn);
         return val;
       };
@@ -34,10 +34,14 @@ const client = asyncRedis.createClient( redisHost );
 
 
 
- }//Class 
 
 
- module.exports = RedisService
+
+ module.exports = {
+saveOffers,
+getValue
+
+ }
 
 
 
