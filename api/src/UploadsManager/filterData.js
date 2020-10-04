@@ -8,6 +8,13 @@ const     filterPostion = (data,postion) =>{
         const out =  postion.out?.substring(1, postion.out?.length-1).split(',').map(Number)
         const ordr = postion.ordr
         const type = parseInt(postion.type)
+
+
+        if ( !Array.isArray(data)) {
+
+
+            return data
+        } 
       
 
         if ( postion === undefined){
@@ -37,7 +44,9 @@ const     filterPostion = (data,postion) =>{
         }  else {
 
             return data
-        }
+        } 
+    
+    
 
       
     }

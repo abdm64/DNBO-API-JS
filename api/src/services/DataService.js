@@ -40,29 +40,34 @@ return dataMerged
 
 const labeleOffers05 = (datas) =>{ 
    
-
+    let data05 = [];
+    
 
     for (let  data of datas){
-        
-         const offerID = data.offer_id
-         delete data.offer_category_name
-         delete data.action_type_name
-         delete data.offer_type_name
-         data.offer_id = parseFloat((offerID.toString() + '5')) 
-         data.Offer_code = offerData.getoffersById(offerID).offer_code
-         data.offer_name = data.offer_name
-         data.price = offerData.getoffersById(offerID).price
-         data.position = data.position
+        const offerID = data.offer_id
 
+        let dataret = {
+            offer_id : parseFloat((offerID.toString() + '5')) ,
+            offer_code: offerData.getoffersById(offerID).offer_code,
+            offer_name: data.offer_name,
+            price: offerData.getoffersById(offerID).price,
+            postion: data.position
+
+    }
+        data05.push(dataret)
+        
+      
 }
 
-return datas
+return data05
 
 }
 
 
 
 const labeleOffers10 = (datas) =>{ 
+
+    let data10 = [];
     
     
 if ( datas === undefined){
@@ -71,17 +76,17 @@ if ( datas === undefined){
 } else {
 
     for (let  data of datas){
-
         const offerID = data.offer_id.toString() + '1'
-        delete data.action_type_name
-        delete data.offer_type_name
-        delete data.score
-        delete data.offer_short_description
-         data.offer_id = parseFloat(offerID) 
-         data.offer_code = data.offer_code
-         data.offer_name = data.offer_name
-         data.price = parseFloat(data.price)
-         data.position = parseFloat(data.position)
+        let dataret = {
+                offer_id : parseFloat(offerID),
+                offer_code: data.offer_code,
+                offer_name: data.offer_name,
+                price: parseFloat(data.price),
+                postion: parseFloat(data.position)
+
+        }
+
+        data10.push(dataret)
       
     }
 
@@ -89,7 +94,7 @@ if ( datas === undefined){
 
 
 
- return datas
+ return data10
 
 
 }

@@ -25,6 +25,7 @@ const channel_id = parseInt(req.body.channel_id)
   let redisData = await  redisService.getValue(msisdn)
 if ( channel_id === 18 && redisData !== null  ) {
   let jsonData = JSON.parse(redisData)
+ 
   
   let static =    filterData.filterPostion(jsonData.static,reqPrams) 
 dataService.typeData(static,jsonData.dynamic,res,parseInt(reqPrams.type))

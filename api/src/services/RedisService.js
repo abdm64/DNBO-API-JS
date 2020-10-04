@@ -21,7 +21,9 @@ const client = asyncRedis.createClient( redisHost );
   
 
    const   getValue = async(msisdn) => {
+        
         let val = await client.get(msisdn);
+       // console.log(val)
         return val;
       };
 
