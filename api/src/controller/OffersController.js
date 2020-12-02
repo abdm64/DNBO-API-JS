@@ -22,13 +22,13 @@ const channel_id = parseInt(req.body.channel_id)
     const reqPrams =  req.query
     
  // if channel id enter 
-  let redisData = await  redisService.getValue(msisdn)
-if ( channel_id === 18 && redisData !== null  ) {
-  let jsonData = JSON.parse(redisData)
+ // let redisData = await  redisService.getValue(msisdn)
+if ( channel_id === 18  ) {
+//   let jsonData = JSON.parse(redisData)
  
   
-  let static =    filterData.filterPostion(jsonData.static,reqPrams) 
-dataService.typeData(static,jsonData.dynamic,res,parseInt(reqPrams.type))
+//   let static =    filterData.filterPostion(jsonData.static,reqPrams) 
+// dataService.typeData(static,jsonData.dynamic,res,parseInt(reqPrams.type))
  
 } else {
 
@@ -58,7 +58,7 @@ dataService.typeData(static,jsonData.dynamic,res,parseInt(reqPrams.type))
     }  catch(err){
       console.log(err)
 
-      res.status(400).json({
+      res.status(500).json({
         message: "Task failed successfully "
       })
        

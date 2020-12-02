@@ -78,12 +78,13 @@ if ( datas === undefined){
     for (let  data of datas){
         const offerID = data.offer_id.toString() + '1'
         let dataret = {
+                //
                 offer_id : parseFloat(offerID),
                 offer_code: data.offer_code,
                 offer_name: data.offer_name,
                 price: parseFloat(data.price),
                 postion: parseFloat(data.position)
-
+                
         }
 
         data10.push(dataret)
