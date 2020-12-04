@@ -1,6 +1,6 @@
 let dbss = require('./NetworkServiceFacebook')
 let networkService = require('../services/NetworkService')
-const filterData = require('../UploadsManager/filterData')
+let dataService = require('../services/DataService')
 
 
 
@@ -13,10 +13,13 @@ const  sendOffer = async (reqData) => {
         if (pripaid ){
               const amount = dbssInfo.amount
              
-              const offer10 = await networkService.getoffers01(reqData)
-
-               // ( amount < 30 && offer_id = 138 ){}
-// send that offer with offer id 
+              const data = await networkService.getoffers01(reqData)
+              const offer10 = dataService.labeleOffers10(data)
+                //get offer_id with filtrea array
+               // ( amount < 30 && offer_id = 138 ){
+               //    send that offer with offer id 
+              // }
+// 
 
 
 
@@ -64,7 +67,11 @@ const filterOffer = ( offer10,amount) => {
 const getOfferType = (offers10) => {
 
 
-    // {ATL = [], BTL = []}
+  
+  
+  
+  
+    //  return {ATL = [], BTL = []}
 
 
 

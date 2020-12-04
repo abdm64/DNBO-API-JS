@@ -1,7 +1,7 @@
-require('dotenv').config();
-const asyncRedis = require("async-redis");
-let redisHost = process.env.REDIS_HOST || 'redis://127.0.0.1:6379' ;
-const client = asyncRedis.createClient( redisHost );
+// require('dotenv').config();
+// const asyncRedis = require("async-redis");
+// let redisHost = process.env.REDIS_HOST || 'redis://127.0.0.1:6379' ;
+// const client = asyncRedis.createClient( redisHost );
 
 
 
@@ -9,23 +9,23 @@ const client = asyncRedis.createClient( redisHost );
 
 
 
-  const saveOffers= (msisdn ,data) =>{
-            const dataString = JSON.stringify(data)
-            client.setex(msisdn,3600, dataString)   
+//   const saveOffers= (msisdn ,data) =>{
+//             const dataString = JSON.stringify(data)
+//             client.setex(msisdn,3600, dataString)   
 
-        }
+//         }
 
     
 
        
   
 
-   const   getValue = async(msisdn) => {
+//    const   getValue = async(msisdn) => {
         
-        let val = await client.get(msisdn);
-       // console.log(val)
-        return val;
-      };
+//         let val = await client.get(msisdn);
+//        // console.log(val)
+//         return val;
+//       };
 
   
      
@@ -39,13 +39,11 @@ const client = asyncRedis.createClient( redisHost );
 
 
 
- module.exports = {
-saveOffers,
-getValue
+//  module.exports = {
+// saveOffers,
+// getValue
 
- }
-
-
+//  }
 
 
 
@@ -79,55 +77,57 @@ getValue
 
 
 
-// const client = redis.createClient(REDIS_PORT);
 
-// const app = express();
 
-// // Set response
-// function setResponse(username, repos) {
-//   return `<h2>${username} has ${repos} Github repos</h2>`;
-// }
+// // const client = redis.createClient(REDIS_PORT);
 
-// // Make request to Github for data
-// async function getRepos(req, res, next) {
-//   try {
-//     console.log('Fetching Data...');
+// // const app = express();
 
-//     const { username } = req.params;
+// // // Set response
+// // function setResponse(username, repos) {
+// //   return `<h2>${username} has ${repos} Github repos</h2>`;
+// // }
 
-//     const response = await fetch(`https://api.github.com/users/${username}`);
+// // // Make request to Github for data
+// // async function getRepos(req, res, next) {
+// //   try {
+// //     console.log('Fetching Data...');
 
-//     const data = await response.json();
+// //     const { username } = req.params;
 
-//     const repos = data.public_repos;
+// //     const response = await fetch(`https://api.github.com/users/${username}`);
 
-//     // Set data to Redis
-//     client.setex(username, 3600, repos);
+// //     const data = await response.json();
 
-//     res.send(setResponse(username, repos));
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500);
-//   }
-// }
+// //     const repos = data.public_repos;
 
-// // Cache middleware
-// function cache(req, res, next) {
-//   const { username } = req.params;
+// //     // Set data to Redis
+// //     client.setex(username, 3600, repos);
 
-//   client.get(username, (err, data) => {
-//     if (err) throw err;
+// //     res.send(setResponse(username, repos));
+// //   } catch (err) {
+// //     console.error(err);
+// //     res.status(500);
+// //   }
+// // }
 
-//     if (data !== null) {
-//       res.send(setResponse(username, data));
-//     } else {
-//       next();
-//     }
-//   });
-// }
+// // // Cache middleware
+// // function cache(req, res, next) {
+// //   const { username } = req.params;
 
-// app.get('/repos/:username', cache, getRepos);
+// //   client.get(username, (err, data) => {
+// //     if (err) throw err;
 
-// app.listen(5000, () => {
-//   console.log(`App listening on port ${PORT}`);
-// });
+// //     if (data !== null) {
+// //       res.send(setResponse(username, data));
+// //     } else {
+// //       next();
+// //     }
+// //   });
+// // }
+
+// // app.get('/repos/:username', cache, getRepos);
+
+// // app.listen(5000, () => {
+// //   console.log(`App listening on port ${PORT}`);
+// // });
