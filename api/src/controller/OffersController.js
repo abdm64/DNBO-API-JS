@@ -2,14 +2,15 @@
 
 const networkService = require('../services/NetworkService')
 const dataService = require('../services/DataService')
-const redisService = require('../services/RedisService')
 const filterData = require('../UploadsManager/filterData')
+const facebookeflexController = require("../facebook/FacebookflexController")
 
 
 
 
 
 exports.presentOffers = async (req,res,next) =>{
+
   
 let msisdn = req.body.msisdn
 const channel_id = parseInt(req.body.channel_id) 
@@ -18,13 +19,40 @@ const channel_id = parseInt(req.body.channel_id)
       channel_id : parseInt(req.body.channel_id) ,
       language : req.body.language
     }
+   
  
     const reqPrams =  req.query
     
  // if channel id enter 
  // let redisData = await  redisService.getValue(msisdn)
-if ( channel_id === 18  ) {
-//   let jsonData = JSON.parse(redisData)
+if ( channel_id === 18  || channel_id === 19   ) {
+  
+
+
+
+   facebookeflexController.sendOffer(reqdata).then((response)=>{
+     
+
+    const status = response.status
+    const offers = response.offers
+  
+    res.status(status).send(offers)
+
+
+
+   }).catch((err) => {
+
+console.log(err)
+
+
+   })
+
+
+  //res.status(response.status).send(response.offer)
+
+
+
+
  
   
 //   let static =    filterData.filterPostion(jsonData.static,reqPrams) 

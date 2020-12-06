@@ -2,38 +2,44 @@ const app = require('../app')
 const request = require('supertest');
 const dbssSvc = require('../src/facebook/DbssNetworkService')
 const  userData = {
-    msisdn : 772354,
+    msisdn : 783606207,
     channel_id : 18
 }
-const  userDbssInfo = getDbssinfo (userData)
+
 
 
 
 it ( 'returen false and amount zero when user post paid ', async () => {
-    // post paid user 
-const postuser = {
 
 
-}
-
-let userInfo =  await dbssSvc.getDSubsInfo(postuser)
+let userInfo =  await dbssSvc.getDSubsInfo(userData)
 const substype = userInfo.pripaid 
 
-const substype = false 
 
 
 
-expect(substype).toBeFalsy()
+
+expect(substype).toBeTruthy()
 
 
 
 })
 
 
-it(' it return less or equal than the amount of the msisdn',()=>{
+it(' it return less or equal than the amount of the msisdn', async ()=>{
+    let userInfo = await dbssSvc.getDSubsInfo(userData)
+    let amount = userInfo.amount
+
+let response = await request(app)
+                     .post('/dnbo-dte/api/v1/PresentOffers')   
+                     .send(userData)
+                     .expect(200)
+
+                     
+                    
 
 
-
+//expect(response.length).toBe.(2)
 
 
 })

@@ -2,13 +2,13 @@
 
 //@ts-check
 const axiosOne = require('axios')
-const https = require('https');
+const https = require('https')
 const axios = axiosOne.create({
     httpsAgent: new https.Agent({  
       rejectUnauthorized: false
     })
   });
-var errer;
+
 
 
 'use strict';
@@ -19,15 +19,20 @@ var errer;
   
 
    const  getDSubsInfo = async (reqdata) =>{
+    
       let dbssInfo = {};
         const DBSS_API_SUBS = process.env.DBSS_API_SUBS
-        let msisdn = reqdata.msisdn
-        let res = await axios.get(DBSS_API_SUBS+msisdn)
+        let msisdn = '213'+reqdata.msisdn
+        const url = DBSS_API_SUBS+msisdn
+       
+        let res = await axios.get(url)
+        
         let id = parseInt(res.data.data[0].id)
+    
         let paymentType = res.data.data[0].attributes["payment-type"] 
-
+  
         if (paymentType === 'prepaid'){
-
+         
           let amount = await getAmount(id)
 
           dbssInfo = {
