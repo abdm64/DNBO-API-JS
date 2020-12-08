@@ -1,7 +1,9 @@
-let dbss = require('./DbssNetworkService')
+let dbss = require('../services/DbssNetworkService')
 let networkService = require('../services/NetworkService')
 let dataService = require('../services/DataService')
-const offer_id_types = require('../uploads/offer_id_type.json')
+const offer_id_types = require('../files/offer_id_type.json')
+const staticOffers = require('../Helpers/staticOffers')
+const errors = require('../Helpers/errors')
 
 
 
@@ -13,17 +15,9 @@ const  sendOffer = async (reqData) => {
         let dbssInfo = await dbss.getDSubsInfo(reqData)
 
         if (dbssInfo.err){
-
-
             return {
                 status : 400,
-                Response : {
-                    source: 'DBSS',
-                    statusCode : 400,
-                    Message : "Error performing the API call: Data empty! Subscriber ID can not be identified"
-                }
-
-
+                Response : dbssInfo.message
             }
         } 
        
@@ -38,22 +32,12 @@ const  sendOffer = async (reqData) => {
            
               const amount = dbssInfo.amount
               
-             // ( amount < 30 && offer_id = 138 ){
-              
-              // }
-// 
-             
+                 
               const data = await networkService.getoffers01(reqData)
             if ( data.data === undefined){
                 return  {
                         status:400,
-                        Response : {
-                            source: 'DNBO 1.0',
-                            statusCode : 400,
-                            Message : data.errMessage,
-                            errCode : data.errCode
-                        }
-
+                        Response : errors.dnboErr(data)
                 }
 
 
@@ -64,12 +48,11 @@ const  sendOffer = async (reqData) => {
               const offer10 = dataService.labeleOffers10(data.data)
 
               if ( amount < 30) {
-                //    send that offer with offer id  default offer
-                //{ "offer_id": 1521, "offer_code": "DOVINTSPEEDDAY1GoPRE", "offer_name": "UAT Internet Jour 1 Go", "price": 100, "position": 1}
+                
 
                 return  {
                     status : 200,
-                    Response : { "offer_id": 1521, "offer_code": "DOVINTSPEEDDAY1GoPRE", "offer_name": "UAT Internet Jour 1 Go", "price": 100, "position": 1}
+                    Response : staticOffers.offersLess
                   }
 
 
@@ -94,7 +77,11 @@ const  sendOffer = async (reqData) => {
             //TODO POST 
 
 
-
+            response = {
+                status : 200,
+                Response : staticOffers.postpaidOffers
+              }
+              
 
 
 
@@ -115,7 +102,7 @@ const  sendOffer = async (reqData) => {
 return {
 
     status : 500,
-    Response : "Internal server Error"
+    Response : {message : "Internal server Error"} 
 }
     }
 
@@ -151,7 +138,7 @@ const filterOffer = ( offer10,amount) => {
 
     validBtl = validBtlArr[validBtlArr.length - 2]
     if ( validBtl === undefined ){
-        validBtl = { "offer_id": 1171, "offer_code": "YOUTUBEUNLIMITED", "offer_name": "UAT 600DA=illimité Youtube/30Jours", "price": 600, "position": 2}
+        validBtl = staticOffers.offerBtl
     } 
 
 

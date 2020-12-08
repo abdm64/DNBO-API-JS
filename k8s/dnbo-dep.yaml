@@ -4,7 +4,7 @@ metadata:
   name: dnbo-dte 
   namespace: dnbo-prod
 spec: 
-  replicas: 4 
+  replicas: 10 
   selector: 
     matchLabels:
         component: dnbo-dte-api 
@@ -15,10 +15,14 @@ spec:
     spec:
       containers: 
       - name: dnbo-dte 
-        image: dmp-api-k8s-registry.com:443/dnbo-dte-api:v0.0.2 #abdm6464/dte-dnbo:latest
+        image: dmp-api-k8s-registry.com:443/dnbo-dte-api:v0.0.6 #abdm6464/dte-dnbo:V0.0.8
         imagePullPolicy: IfNotPresent 
         ports: 
         - containerPort: 3000 
+        env:  
+          - name: DBSS_API
+            value: https://10.96.34.4:3300
+          
           
 
           

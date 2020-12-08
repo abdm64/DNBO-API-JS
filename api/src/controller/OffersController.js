@@ -2,8 +2,7 @@
 
 const networkService = require('../services/NetworkService')
 const dataService = require('../services/DataService')
-const filterData = require('../UploadsManager/filterData')
-const facebookeflexController = require("../facebook/FacebookflexController")
+const facebookeflexController = require("./FacebookflexController")
 
 
 
@@ -23,8 +22,7 @@ const channel_id = parseInt(req.body.channel_id)
  
     const reqPrams =  req.query
     
- // if channel id enter 
- // let redisData = await  redisService.getValue(msisdn)
+ 
 if ( channel_id === 18  || channel_id === 19   ) {
   
 

@@ -1,6 +1,6 @@
 //@ts-check
 const axiosOne = require('axios')
-const offerData  = require('../UploadsManager/offerData');
+const offerData  = require('../DataManager/offerData');
 
 
 const https = require('https');

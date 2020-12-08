@@ -1,9 +1,9 @@
 
 //@ts-check
 
-const offersArray  = require('../uploads/offer_code_price.json')
+const offersArray  = require('../files/offer_code_price.json')
 
-const channelArray = require('../uploads/dnbo_channel_id.json');
+const channelArray = require('../files/dnbo_channel_id.json');
 
 
 

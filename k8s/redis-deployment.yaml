@@ -1,20 +1,20 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: redis-deployment
-  namespace: dnbo-prod
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      component: redis
-  template:
-    metadata:
-      labels:
-        component: redis
-    spec:
-      containers:
-        - name: redis
-          image: redis
-          ports:
-            - containerPort: 6379
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: redis-deployment
+#   namespace: dnbo-prod
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       component: redis
+#   template:
+#     metadata:
+#       labels:
+#         component: redis
+#     spec:
+#       containers:
+#         - name: redis
+#           image: redis
+#           ports:
+#             - containerPort: 6379

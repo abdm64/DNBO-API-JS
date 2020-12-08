@@ -4,8 +4,9 @@
   "description": "combine 2 api for one api",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "jest"
+    "start": "node src/app.js",
+    "test": "jest",
+    "start:dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",

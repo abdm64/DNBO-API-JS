@@ -1,6 +1,6 @@
 //@ts-check
-const offerData = require('../UploadsManager/offerData');
-const filterData = require('../UploadsManager/filterData');
+const offerData = require('../DataManager/offerData');
+const filterData = require('../DataManager/filterData');
 const redisService = require('./RedisService')
 
 
