@@ -24,14 +24,26 @@ const axios = axiosOne.create({
         const DBSS_API_SUBS = process.env.DBSS_API_SUBS
         let msisdn = '213'+reqdata.msisdn
         const url = DBSS_API_SUBS+msisdn
-       
         let res = await axios.get(url)
-        
+      
+        const dataLength = res.data.data.length
+       
+    if ( dataLength === 0){
+
+
+      return {
+          err : true
+      }
+    }
+
+
+
+
+
         let id = parseInt(res.data.data[0].id)
-    
         let paymentType = res.data.data[0].attributes["payment-type"] 
   
-        if (paymentType === 'prepaid'){
+        if (paymentType === 'prepaid' ||  paymentType === 'hybrid'){
          
           let amount = await getAmount(id)
 
@@ -64,6 +76,7 @@ const axios = axiosOne.create({
         let dbssblaceurl = buildUrl(id)
         let res = await axios.get(dbssblaceurl)
         let  amount = parseInt(res.data.data[0].attributes.amount)
+        //ERR Handling 
 
         return amount
 

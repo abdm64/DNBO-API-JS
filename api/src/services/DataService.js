@@ -51,7 +51,7 @@ const labeleOffers05 = (datas) =>{
             offer_code: offerData.getoffersById(offerID).offer_code,
             offer_name: data.offer_name,
             price: offerData.getoffersById(offerID).price,
-            postion: data.position
+            position: data.position
 
     }
         data05.push(dataret)
@@ -83,7 +83,7 @@ if ( datas === undefined){
                 offer_code: data.offer_code,
                 offer_name: data.offer_name,
                 price: parseFloat(data.price),
-                postion: parseFloat(data.position)
+                position: parseFloat(data.position)
                 
         }
 

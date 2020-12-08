@@ -31,10 +31,11 @@ if ( channel_id === 18  || channel_id === 19   ) {
 
 
    facebookeflexController.sendOffer(reqdata).then((response)=>{
+    
      
 
     const status = response.status
-    const offers = response.offers
+    const offers = response.Response
   
     res.status(status).send(offers)
 

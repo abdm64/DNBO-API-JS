@@ -11,6 +11,21 @@ const  sendOffer = async (reqData) => {
     try{
       
         let dbssInfo = await dbss.getDSubsInfo(reqData)
+
+        if (dbssInfo.err){
+
+
+            return {
+                status : 400,
+                Response : {
+                    source: 'DBSS',
+                    statusCode : 400,
+                    Message : "Error performing the API call: Data empty! Subscriber ID can not be identified"
+                }
+
+
+            }
+        } 
        
       
         let pripaid = dbssInfo.pripaid
@@ -22,32 +37,65 @@ const  sendOffer = async (reqData) => {
            
            
               const amount = dbssInfo.amount
+              
              // ( amount < 30 && offer_id = 138 ){
-               //    send that offer with offer id  default offer
+              
               // }
 // 
              
               const data = await networkService.getoffers01(reqData)
+            if ( data.data === undefined){
+                return  {
+                        status:400,
+                        Response : {
+                            source: 'DNBO 1.0',
+                            statusCode : 400,
+                            Message : data.errMessage,
+                            errCode : data.errCode
+                        }
+
+                }
+
+
+            }
+    
              
              
               const offer10 = dataService.labeleOffers10(data.data)
+
+              if ( amount < 30) {
+                //    send that offer with offer id  default offer
+                //{ "offer_id": 1521, "offer_code": "DOVINTSPEEDDAY1GoPRE", "offer_name": "UAT Internet Jour 1 Go", "price": 100, "position": 1}
+
+                return  {
+                    status : 200,
+                    Response : { "offer_id": 1521, "offer_code": "DOVINTSPEEDDAY1GoPRE", "offer_name": "UAT Internet Jour 1 Go", "price": 100, "position": 1}
+                  }
+
+
+
+              }
               const offerFilterd =  filterOffer( offer10,amount)
 
               response = {
                 status : 200,
-                offers : offerFilterd
+                Response : offerFilterd
               }
               
 
-                //get offer_id with filtrea array
+               
                
 
 
                
    
         } else {
-            // send static offer 
-            //TODO
+            // send static offer Post Paid
+            //TODO POST 
+
+
+
+
 
 
 
@@ -60,9 +108,15 @@ const  sendOffer = async (reqData) => {
     } catch(err){
         //TODO send err message with status 
 
+
+
         console.log(err)
 
-return err.message
+return {
+
+    status : 500,
+    Response : "Internal server Error"
+}
     }
 
     
@@ -79,17 +133,41 @@ const filterOffer = ( offer10,amount) => {
 
     let allData = []
     
-  const atl = getOfferType( offer10).atl
+  const atl = getOfferType(offer10).atl
   const btl = getOfferType(offer10).btl
 
  
   
-   const validAtl = validOffers(atl,amount)
+  let validAtlArr = validOffers(atl,amount)
+  let validAtl = validAtlArr[validAtlArr.length - 1]
   
-   const validBtl = validOffers(btl, amount)
-  
+   let validBtlArr = validOffers(btl, amount)
+   let validBtl = validBtlArr[validBtlArr.length - 1]
+
+
+
+
+   if(validAtl.price  === validBtl.price){
+
+    validBtl = validBtlArr[validBtlArr.length - 2]
+    if ( validBtl === undefined ){
+        validBtl = { "offer_id": 1171, "offer_code": "YOUTUBEUNLIMITED", "offer_name": "UAT 600DA=illimité Youtube/30Jours", "price": 600, "position": 2}
+    } 
+
+
+
+    
+
+
+
+
+   }
+
+    validAtl.position = 1
+    validBtl.position = 2
    allData.push(validAtl)
    allData.push(validBtl)
+
 
    
    
@@ -102,6 +180,8 @@ const filterOffer = ( offer10,amount) => {
 const getOfferType = (offers) => {
     let atl  = []
     let btl  = []
+    let offersIds = []
+
 
 
 
@@ -112,12 +192,14 @@ const getOfferType = (offers) => {
                
                 if ( offer.offer_id === offer_id_type.offer_id) {
                
+                    offersIds.push(offer.offer_id) 
                   
                     if (offer_id_type.offer_type === 0){
-                       
+                     
                      
                         atl.push(offer)
                     } else if (offer_id_type.offer_type === 1) {
+                      
                       
                         btl.push(offer)
                     
@@ -133,6 +215,7 @@ const getOfferType = (offers) => {
           
 
     }
+
   
 
   let data = {
@@ -141,7 +224,7 @@ const getOfferType = (offers) => {
     btl : btl 
 }
 
-    
+   
 
     return  data
 
@@ -150,8 +233,10 @@ const getOfferType = (offers) => {
 const validOffers = (offersArray,amount) =>{
     
     
+    
  let offerAmount = offersArray.filter((offer)=>{
         let price =  parseInt(offer.price)
+    
 
         return   price <= amount
     })
@@ -164,7 +249,7 @@ const validOffers = (offersArray,amount) =>{
     })
   
 
-    return offerAmount[offerAmount.length - 1]
+    return offerAmount
 
 
 }
