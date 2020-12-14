@@ -52,7 +52,7 @@ const  sendOffer = async (reqData) => {
 
                 return  {
                     status : 200,
-                    Response : staticOffers.offersLess
+                    Response : staticOffers.tranquiloOffer(offer10)
                   }
 
 

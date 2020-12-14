@@ -65,7 +65,7 @@ we create ingress service  and multiple replicas for the dnbo-api because we exp
 
 ## Author
 
-* **Messelleka Abdellah** - *DevOps Engineer @* - [Djezzy](http://www.djezzy.dz/)
+* **Messelleka Abdellah** - *DevOps Engineer @ - [Djezzy](http://www.djezzy.dz/)
 
 
 
