@@ -27,6 +27,15 @@ const simCardTypeErr =  {
     errCode: 300
   }
 
+const  noOffers = {
+    source : "dte-dnbo",
+    statusCode : 400,
+    Message: "No Offers available for you",
+    errCode: 120
+
+
+}
+
 
 
 
@@ -35,7 +44,7 @@ const simCardTypeErr =  {
 
 module.exports ={
 
- dnboErr,dbssIdErr, dbssBalanceErr,simCardTypeErr
+ dnboErr,dbssIdErr, dbssBalanceErr,simCardTypeErr, noOffers
 
     
   }

@@ -17,7 +17,7 @@ require('dotenv').config();
 
 app.use(express.static(__dirname + './static'))
 //serve
-app.get('/*', function(req, res) {
+app.get('/dnbo-dte', function(req, res) {
     res.sendFile(path.join(__dirname, './static/index.html'), (err) => {
 
       if (err) {
@@ -51,15 +51,7 @@ app.use(express.json())
 
 
 // satrt  end point API 
-app.get('/dnbo-dte/api/v1',(req,res)=>{
 
-
-    res.status(201).json({
-      message : " DNBO API is working",
-    
-    });
-  
-  })
 
 
 

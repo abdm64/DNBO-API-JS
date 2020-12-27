@@ -28,7 +28,7 @@ if ( channel_id === 18  || channel_id === 19   ) {
 
 
 
-   facebookeflexController.sendOffer(reqdata).then((response)=>{
+   facebookeflexController.presentOffers(reqdata).then((response)=>{
     
      
 
@@ -47,15 +47,7 @@ console.log(err)
    })
 
 
-  //res.status(response.status).send(response.offer)
-
-
-
-
- 
   
-//   let static =    filterData.filterPostion(jsonData.static,reqPrams) 
-// dataService.typeData(static,jsonData.dynamic,res,parseInt(reqPrams.type))
  
 } else {
 

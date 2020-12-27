@@ -11,7 +11,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /dnbo-dte
             backend:
               serviceName: dnbo-cluster-ip-service 
               servicePort: 3000

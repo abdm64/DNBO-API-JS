@@ -46,9 +46,12 @@ const offersLess = {
 
     const tranquiloOffer = (offers) => {
         const  offer_ids = offers.map((offer) => offer.offer_id)
-        const  checkTranquilloAvailable = offer_ids.includes(1521)
+        const  checkTranquilloAvailable = offer_ids.includes(1551)
 
-        return offers.filter((offer) = offer.offer_id === 1521 )
+
+
+
+        return offers.filter((offer) => offer.offer_id === 1551)
 
 
     }

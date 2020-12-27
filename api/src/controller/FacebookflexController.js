@@ -1,13 +1,13 @@
-let dbss = require('../services/DbssNetworkService')
-let networkService = require('../services/NetworkService')
-let dataService = require('../services/DataService')
-const offer_id_types = require('../files/offer_id_type.json')
+const dbss = require('../services/DbssNetworkService')
+const networkService = require('../services/NetworkService')
+const dataService = require('../services/DataService')
+const offersHelper = require('../Helpers/offersHelper')
 const staticOffers = require('../Helpers/staticOffers')
 const errors = require('../Helpers/errors')
 
 
 
-const  sendOffer = async (reqData) => {
+const  presentOffers = async (reqData) => {
     
     let response
     try{
@@ -30,14 +30,14 @@ const  sendOffer = async (reqData) => {
         if (pripaid){
            
            
-              const amount = dbssInfo.amount
+              const amount = dbssInfo.amount 
               
-                 
-              const data = await networkService.getoffers01(reqData)
-            if ( data.data === undefined){
+              const res = await networkService.getoffers01(reqData)
+
+            if ( res.data === undefined){
                 return  {
                         status:400,
-                        Response : errors.dnboErr(data)
+                        Response : errors.dnboErr(res)
                 }
 
 
@@ -45,22 +45,35 @@ const  sendOffer = async (reqData) => {
     
              
              
-              const offer10 = dataService.labeleOffers10(data.data)
+              const offer10 = dataService.labeleOffers10(res.data)
 
               if ( amount < 30) {
-                
+                let tranquiloOffer = staticOffers.tranquiloOffer(offer10)
 
-                return  {
-                    status : 200,
-                    Response : staticOffers.tranquiloOffer(offer10)
-                  }
+                    if(tranquiloOffer.length !== 0){
+                             return  {
+                                 status : 200,
+                                 Response : staticOffers.tranquiloOffer(offer10)
+                                 }
+
+                    } else {
+
+                         return  {
+                                 status : 400,
+                                 Response : errors.noOffers
+                                 }
+
+
+
+                    }
+               
 
 
 
               }
-              const offerFilterd =  filterOffer( offer10,amount)
+              const offerFilterd = offersHelper.filterOfferByAmount( offer10,amount)
 
-              response = {
+               response = {
                 status : 200,
                 Response : offerFilterd
               }
@@ -113,135 +126,5 @@ return {
     return  response
 }
 
-
-const filterOffer = ( offer10,amount) => {
-
- 
-
-    let allData = []
-    
-  const atl = getOfferType(offer10).atl
-  const btl = getOfferType(offer10).btl
-
- 
-  
-  let validAtlArr = validOffers(atl,amount)
-  let validAtl = validAtlArr[validAtlArr.length - 1]
-  
-   let validBtlArr = validOffers(btl, amount)
-   let validBtl = validBtlArr[validBtlArr.length - 1]
-
-
-
-
-   if(validAtl.price  === validBtl.price){
-
-    validBtl = validBtlArr[validBtlArr.length - 2]
-    if ( validBtl === undefined ){
-        validBtl = staticOffers.offerBtl
-    } 
-
-
-
-    
-
-
-
-
-   }
-
-    validAtl.position = 1
-    validBtl.position = 2
-   allData.push(validAtl)
-   allData.push(validBtl)
-
-
-   
-   
-   
-   
-    return allData
-}
-//
-
-const getOfferType = (offers) => {
-    let atl  = []
-    let btl  = []
-    let offersIds = []
-
-
-
-
-    for (let offer of offers ) {
-       
-
-            for (let offer_id_type of offer_id_types ) {
-               
-                if ( offer.offer_id === offer_id_type.offer_id) {
-               
-                    offersIds.push(offer.offer_id) 
-                  
-                    if (offer_id_type.offer_type === 0){
-                     
-                     
-                        atl.push(offer)
-                    } else if (offer_id_type.offer_type === 1) {
-                      
-                      
-                        btl.push(offer)
-                    
-
-
-                    }
-
-                }
-
-
-
-            }
-          
-
-    }
-
-  
-
-  let data = {
-
-    atl : atl ,
-    btl : btl 
-}
-
-   
-
-    return  data
-
-
-}
-const validOffers = (offersArray,amount) =>{
-    
-    
-    
- let offerAmount = offersArray.filter((offer)=>{
-        let price =  parseInt(offer.price)
-    
-
-        return   price <= amount
-    })
-    
-
-    .sort((a,b) => {
-
-
-  return a.price - b.price
-    })
-  
-
-    return offerAmount
-
-
-}
-
-
-
-module.exports = { sendOffer }
+module.exports = { presentOffers }
 
