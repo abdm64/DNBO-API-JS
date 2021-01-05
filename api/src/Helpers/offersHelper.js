@@ -10,7 +10,7 @@ const  filterOfferByAmount = ( offer10,amount) => {
 
  
 
-    let allData = []
+    let offers = []
     
   const atl = getOfferType(offer10).atl
   const btl = getOfferType(offer10).btl
@@ -21,6 +21,9 @@ const  filterOfferByAmount = ( offer10,amount) => {
   let validAtl = validAtlArr[validAtlArr.length - 1]
   
    let validBtlArr = validOffers(btl, amount)
+   
+  const arr =  validBtlArr.slice(Math.max(validBtlArr.length - 1 , 1))
+  
    let validBtl = validBtlArr[validBtlArr.length - 1]
 
 
@@ -44,15 +47,15 @@ const  filterOfferByAmount = ( offer10,amount) => {
 
     validAtl.position = 1
     validBtl.position = 2
-   allData.push(validAtl)
-   allData.push(validBtl)
+   offers.push(validAtl)
+  offers.push(validBtl)
 
 
    
    
    
    
-    return allData
+    return offers
 }
 //
 

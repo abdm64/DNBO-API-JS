@@ -8,7 +8,7 @@ const postpaidOffers = [
     offer_id: 1461,
     offer_code: "DOVINTSPEEDMONTH15GoPOST",
     offer_name: "UAT Internet Mois 15 Go - POST",
-    offer_price: 1000,
+    price: 1000,
     postion:1,
     
   },
@@ -17,7 +17,7 @@ const postpaidOffers = [
         offer_id: 1421,
         offer_code: "DOVINTSPEEDDAY100MoPOST",
         offer_name: "UAT Internet Jour 100 Mo - POST",
-        offer_price: 30,
+        price: 30,
         postion:2,
         
       }

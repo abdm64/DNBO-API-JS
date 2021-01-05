@@ -21,18 +21,17 @@ const axios = axiosOne.create({
 
    const  getDSubsInfo = async (reqdata) =>{
     
-      let dbssInfo = {};
-      
+        let dbssInfo = {};
         const DBSS_API_SUBS = process.env.DBSS_API+'/api/v1/subscriptions/?filter%5Bmsisdn%5D='
-        let msisdn = '213'+reqdata.msisdn
-        const url = DBSS_API_SUBS+msisdn
-
+        const filter = "filter%5Bstatus%5D=active&filter%5Bstatus%5D=dormant"
+        const url =  `${DBSS_API_SUBS}213${reqdata.msisdn}&${filter}`
         let res = await axios.get(url)
+        const dataChecker = res.data.data.length
      
       
-        const dataLength = res.data.data.length
+        
        
-    if ( dataLength === 0){
+    if (  dataChecker === 0){
 
 
       return {
@@ -46,6 +45,7 @@ const axios = axiosOne.create({
 
 
         let id = parseInt(res.data.data[0].id)
+       
         let paymentType = res.data.data[0].attributes["payment-type"] 
          const  emplyerCard =    await getSimCardType(id)
         
@@ -109,12 +109,14 @@ const axios = axiosOne.create({
       }
 
     const getAmount = async (id) =>{
+     
         let dbssblaceurl = buildUrl(id).balanceApi
         let res = await axios.get(dbssblaceurl) 
+        
        
 
         
-       if ( res.data.data[0]=== undefined ){
+       if ( res.data.data[0] === undefined ){
 
 
         return {

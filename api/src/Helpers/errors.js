@@ -1,11 +1,11 @@
-const  dnboErr = (data) =>{
+const  dnboErr = (err) =>{
 
 
     return {
         source: 'DNBO 1.0',
         statusCode : 400,
-        Message : data.errMessage,
-        errCode : data.errCode
+        Message : err.errMessage,
+        errCode : err.errCode
     }
 }
 
@@ -23,7 +23,7 @@ const dbssBalanceErr  = {
 const simCardTypeErr =  {
     source: "DNBO 1.0",
     statusCode: 400,
-    Message: "Profile not elgible",
+    Message: "Profile not eligible",
     errCode: 300
   }
 

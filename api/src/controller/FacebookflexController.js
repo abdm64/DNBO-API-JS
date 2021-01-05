@@ -31,6 +31,7 @@ const  presentOffers = async (reqData) => {
            
            
               const amount = dbssInfo.amount 
+             
               
               const res = await networkService.getoffers01(reqData)
 
@@ -46,6 +47,7 @@ const  presentOffers = async (reqData) => {
              
              
               const offer10 = dataService.labeleOffers10(res.data)
+             
 
               if ( amount < 30) {
                 let tranquiloOffer = staticOffers.tranquiloOffer(offer10)
@@ -71,8 +73,9 @@ const  presentOffers = async (reqData) => {
 
 
               }
+            
               const offerFilterd = offersHelper.filterOfferByAmount( offer10,amount)
-
+              
                response = {
                 status : 200,
                 Response : offerFilterd
