@@ -3,20 +3,30 @@
 const networkService = require('../services/NetworkService')
 const dataService = require('../services/DataService')
 const facebookeflexController = require("./FacebookflexController")
-
+const logController = require('./LogController')
+const checkHelper = require('../Helpers/checker')
 
 
 
 
 exports.presentOffers = async (req,res,next) =>{
 
+  if (!checkHelper.checkValue(req.body)){
+
+
+		return res.status(400).send({message : "Bad Request msisdn and channel_id must be defined"})
+	}
+
   
-let msisdn = req.body.msisdn
+let msisdn = (req.body.msisdn).toString().substring(3)
+
+
+
 const channel_id = parseInt(req.body.channel_id) 
     const reqdata = {
-      msisdn : parseInt(req.body.msisdn),
+      msisdn : parseInt(msisdn),
       channel_id : parseInt(req.body.channel_id) ,
-      language : req.body.language
+      language : req.body.language || "FR"
     }
    
  
@@ -34,10 +44,20 @@ if ( channel_id === 18  || channel_id === 19   ) {
 
     const status = response.status
     const offers = response.Response
+    let time = new Date()
+
+let log = {
+  time : time.toISOString(),
+  msisdn:  parseInt('213'+msisdn),
+  response : offers
+
+}
+  
+    
   
     res.status(status).send(offers)
 
-
+    logController.log(log)
 
    }).catch((err) => {
 
@@ -68,7 +88,7 @@ console.log(err)
           reqPrams:reqPrams,
           channel_id:channel_id
       }
-     // dataService.switchData(msisdn,dataOffers05,dataOffers10,res,reqPrams)
+     
       dataService.switchData(sendData)
     
      
@@ -88,8 +108,19 @@ console.log(err)
 }
 
 exports.acceptOffer = async (req,res)=>{
+  if (!checkHelper.checkValue(req.body)){
 
-    const reqdata = req.body
+
+		return res.status(400).send({message : "Bad Request msisdn and channel_id must be not undefined"})
+	}
+
+  let msisdn = (req.body.msisdn).toString().substring(3)
+
+    const reqdata = {
+      msisdn : parseInt(msisdn),
+      channel_id:req.body.channel_id,
+      offer_id: req.body.offer_id
+    }
     const offer10 = dataService.checkOffer10(reqdata.offer_id)
    
    

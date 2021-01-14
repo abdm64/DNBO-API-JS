@@ -37,13 +37,15 @@ var errer;
         username: process.env.USER,
         password: process.env.PASS
       }
+      const timeout  = { timeout: 2000}
+
       
       var data;
 
 try {
- data = await axios.post(postOffersUrl, sentData,{ auth : auth})
+ data = await axios.post(postOffersUrl, sentData,{ auth : auth},timeout)
 
-
+console.log(data.status)
 
 } catch(err){
 
@@ -67,6 +69,7 @@ return data
 }
 //DNBO 1.0
 const getoffers01 = async (reqdata) =>{
+  
 
     
     const sentData = {
@@ -83,10 +86,13 @@ const getoffers01 = async (reqdata) =>{
 
     const postOffersUrl = process.env.OFFERS01
     
-      var data;
+      var response;
+      // set timeout ,{ timeout: 2000}
+      const timeout  = { timeout: 2000}
 
 try {
- data = await axios.post(postOffersUrl, sentData)
+ response = await axios.post(postOffersUrl, sentData,timeout)
+ 
 
 
 } catch(err){
@@ -102,7 +108,7 @@ const errorResponse = {
 return errorResponse
 
 }
-return data
+return response
 
 
 }
@@ -113,14 +119,12 @@ return data
 
     const sentData = {
       msisdn : parseInt(reqData.msisdn),
-     // offer_code : parseInt(reqData.Offer_code),
-      offer_id : offerId,
-      //price
-      
+      offer_id : offerId,    
       channel_id : offerData.getChannel(parseInt(reqData.channel_id)).channel05
       
     }
-  //  console.log(sentData)
+    
+
 
     const apiUrl = process.env.ACCEPT05
 

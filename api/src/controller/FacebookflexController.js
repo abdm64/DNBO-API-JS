@@ -8,6 +8,8 @@ const errors = require('../Helpers/errors')
 
 
 const  presentOffers = async (reqData) => {
+
+
     
     let response
     try{
@@ -32,6 +34,7 @@ const  presentOffers = async (reqData) => {
            
               const amount = dbssInfo.amount 
              
+             console.log(amount)
               
               const res = await networkService.getoffers01(reqData)
 
@@ -118,7 +121,12 @@ const  presentOffers = async (reqData) => {
 return {
 
     status : 500,
-    Response : {message : "Internal server Error"} 
+    Response : {
+        title : "Internal server Error",
+        message : "can't get result from DNBO 1.0",
+        source : 'DNBO'
+        
+    } 
 }
     }
 

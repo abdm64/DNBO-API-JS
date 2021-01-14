@@ -9,7 +9,7 @@ const postpaidOffers = [
     offer_code: "DOVINTSPEEDMONTH15GoPOST",
     offer_name: "UAT Internet Mois 15 Go - POST",
     price: 1000,
-    postion:1,
+    position:1,
     
   },
     {
@@ -18,7 +18,7 @@ const postpaidOffers = [
         offer_code: "DOVINTSPEEDDAY100MoPOST",
         offer_name: "UAT Internet Jour 100 Mo - POST",
         price: 30,
-        postion:2,
+        position:2,
         
       }
 
@@ -36,13 +36,22 @@ const offersLess = {
     }
 
     const offerBtl = { 
+      
                      offer_id: 1171, 
                      offer_code: "YOUTUBEUNLIMITED", 
                      offer_name: "UAT 600DA=illimité Youtube/30Jours", 
                      price: 600, 
                      position: 2
 
-                        }
+                
+                
+                    }
+
+
+
+
+
+
 
     const tranquiloOffer = (offers) => {
         const  offer_ids = offers.map((offer) => offer.offer_id)

@@ -8,6 +8,15 @@ const dataController = require('./controller/DataController')
 const fs = require('fs');
 const helmet = require('helmet')
 const path = require('path');
+const pino = require('pino-http')({
+
+})
+
+
+
+
+
+
 
 
 
@@ -18,6 +27,7 @@ require('dotenv').config();
 app.use(express.static(__dirname + './static'))
 //serve
 app.get('/dnbo-dte', function(req, res) {
+ 
     res.sendFile(path.join(__dirname, './static/index.html'), (err) => {
 
       if (err) {
@@ -50,7 +60,7 @@ app.use(express.json())
 
 
 
-// satrt  end point API 
+
 
 
 

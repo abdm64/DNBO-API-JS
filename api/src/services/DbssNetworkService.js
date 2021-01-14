@@ -27,10 +27,8 @@ const axios = axiosOne.create({
         const url =  `${DBSS_API_SUBS}213${reqdata.msisdn}&${filter}`
         let res = await axios.get(url)
         const dataChecker = res.data.data.length
-     
-      
         
-       
+    
     if (  dataChecker === 0){
 
 
