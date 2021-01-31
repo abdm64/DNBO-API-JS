@@ -50,9 +50,7 @@ app.use((req,res,next)=> {
 });
 //app.use(fileUpload)
 
-app.use(logger('common', {
-    stream: fs.createWriteStream('./logs.log', {flags: 'a'})
-}));
+
  app.use(helmet())
 
 
@@ -68,7 +66,7 @@ app.use(express.json())
   app.post('/dnbo-dte/api/v1/PresentOffers',offersController.presentOffers);
 
 
-  app.post('/dnbo-dte/api/v1/Acceptoffer',offersController.acceptOffer);
+  app.post('/dnbo-dte/api/v1/AcceptOffer',offersController.acceptOffer);
 
   app.post('/dnbo-dte/api/v1/upload',dataController.saveFile);
   
@@ -78,7 +76,7 @@ app.use(express.json())
 
 
   app.listen(3000, ()  => {
-    console.log('DNBO listening on port ' + 3000);
+    console.log('DNBO API-Manger is up and running' );
 });
 
 // docker tag local-image:tagname new-repo:tagname

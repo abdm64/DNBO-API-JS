@@ -1,10 +1,10 @@
 const express = require('express')
 const app = express()
 const config = require('./config/config')
-const userController = require('./src/Controllers/userController')
+const userController = require('./Controllers/userController')
 const mongoose = require('mongoose')
 const cors = require('cors');
-const data = require('./uploads/dnbo_channel_id.json')
+const data = require('../uploads/dnbo_channel_id.json')
 const fs = require('fs');
 
 

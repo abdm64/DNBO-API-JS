@@ -1,6 +1,7 @@
 //@ts-check
 const axiosOne = require('axios')
 const offerData  = require('../DataManager/offerData');
+const time = process.env.TIME || 3000
 
 
 const https = require('https');
@@ -37,7 +38,7 @@ var errer;
         username: process.env.USER,
         password: process.env.PASS
       }
-      const timeout  = { timeout: 2000}
+      const timeout  = { timeout: time}
 
       
       var data;
@@ -45,7 +46,7 @@ var errer;
 try {
  data = await axios.post(postOffersUrl, sentData,{ auth : auth},timeout)
 
-console.log(data.status)
+
 
 } catch(err){
 
@@ -69,7 +70,7 @@ return data
 }
 //DNBO 1.0
 const getoffers01 = async (reqdata) =>{
-  
+ 
 
     
     const sentData = {
@@ -87,8 +88,9 @@ const getoffers01 = async (reqdata) =>{
     const postOffersUrl = process.env.OFFERS01
     
       var response;
-      // set timeout ,{ timeout: 2000}
-      const timeout  = { timeout: 2000}
+   
+      const timeout  = { timeout: time}
+      
 
 try {
  response = await axios.post(postOffersUrl, sentData,timeout)

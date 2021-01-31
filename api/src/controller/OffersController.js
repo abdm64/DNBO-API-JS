@@ -15,7 +15,8 @@ exports.presentOffers = async (req,res,next) =>{
 
 
 		return res.status(400).send({message : "Bad Request msisdn and channel_id must be defined"})
-	}
+  }
+ 
 
   
 let msisdn = (req.body.msisdn).toString().substring(3)
@@ -39,6 +40,7 @@ if ( channel_id === 18  || channel_id === 19   ) {
 
 
    facebookeflexController.presentOffers(reqdata).then((response)=>{
+ 
     
      
 
@@ -46,18 +48,20 @@ if ( channel_id === 18  || channel_id === 19   ) {
     const offers = response.Response
     let time = new Date()
 
-let log = {
-  time : time.toISOString(),
+let logs = {
+  status:status,
+  timestemp : time.toISOString(),
   msisdn:  parseInt('213'+msisdn),
-  response : offers
+  channel_id: channel_id,
+  Response : offers
 
 }
   
-    
+    logController.log(logs)
   
     res.status(status).send(offers)
 
-    logController.log(log)
+  //  logController.log(log)
 
    }).catch((err) => {
 
@@ -98,7 +102,7 @@ console.log(err)
       console.log(err)
 
       res.status(500).json({
-        message: "Task failed successfully "
+        message: "Internal server Err"
       })
        
       

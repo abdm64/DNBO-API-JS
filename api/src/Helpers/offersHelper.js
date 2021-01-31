@@ -8,43 +8,102 @@ const staticOffers = require('../Helpers/staticOffers')
 
 const  filterOfferByAmount = ( offer10,amount) => {
 
- 
+
 
     let offers = []
     
-  const atl = getOfferType(offer10).atl
-  const btl = getOfferType(offer10).btl
-
- 
-  
+  const atl = getOffersType(offer10).atl
+  const btl = getOffersType(offer10).btl
   let validAtlArr = validOffers(atl,amount)
+  let validBtlArr = validOffers(btl, amount)
+  const atlLength =  validAtlArr.length //alwayse more the 2 
+  const btlLength = validBtlArr.length
   let validAtl = validAtlArr[validAtlArr.length - 1]
-  
-   let validBtlArr = validOffers(btl, amount)
+  let validBtl;
+
+
    
-  const arr =  validBtlArr.slice(Math.max(validBtlArr.length - 1 , 1))
+   
   
-   let validBtl = validBtlArr[validBtlArr.length - 1]
+
+ switch (true) {
+
+  case (btlLength === 0 && atlLength === 0):
+    console.log("send default offers")
+    validBtl = staticOffers.offerBtl
+    validAtl = staticOffers.offersLess
+    break;
+  case (btlLength === 0 && atlLength > 1):
+        validBtl = staticOffers.offerBtl
+        validAtl = validAtlArr[validAtlArr.length - 1]
+  break;
+  case (btlLength === 1 && atlLength > 1):
+    validBtl =  validBtl = validBtlArr[validBtlArr.length - 1]
+    validAtl = validAtlArr[validAtlArr.length - 1]
+break;
+case (btlLength === 1 && atlLength > 1):
+    validBtl =  validBtl = validBtlArr[validBtlArr.length - 1]
+    validAtl = validAtlArr[validAtlArr.length - 1]
+break;
+
+    
+
+    
+
+    
+   
 
 
 
 
+
+
+
+
+
+  default:
+   //BTL and ATL has more then one element 
+   console.log('default')
+    validBtl = validBtlArr[validBtlArr.length - 1]
+    validAtl = validAtlArr[validAtlArr.length - 1]
+    
    if(validAtl.price  === validBtl.price){
 
     validBtl = validBtlArr[validBtlArr.length - 2]
     if ( validBtl === undefined ){
-        validBtl = staticOffers.offerBtl
+        
+        validAtl.position = 1
+        offers.push(validAtl)
+        return offers
     } 
 
 
 
-    
-
-
-
-
    }
+}
 
+
+
+
+
+//    if(validAtl.price  === validBtl.price){
+
+//     validBtl = validBtlArr[validBtlArr.length - 2]
+//     if ( validBtl === undefined ){
+        
+//         validAtl.position = 1
+//         offers.push(validAtl)
+
+
+//         return offers
+//     } 
+
+
+
+//    }
+
+
+   
     validAtl.position = 1
     validBtl.position = 2
    offers.push(validAtl)
@@ -59,12 +118,15 @@ const  filterOfferByAmount = ( offer10,amount) => {
 }
 //
 
-const getOfferType = (offers) => {
+const getOffersType = (offers) => {
     let atl  = []
     let btl  = []
-    let offersIds = []
+    let postOffers = []
+    let defaultAtl = []
+    let defaultBtl= []
+    let tranquiloOffer  = []
 
-
+//need factoring it (o) is the worst 
 
 
     for (let offer of offers ) {
@@ -74,19 +136,30 @@ const getOfferType = (offers) => {
                
                 if ( offer.offer_id === offer_id_type.offer_id) {
                
-                    offersIds.push(offer.offer_id) 
+                   
                   
-                    if (offer_id_type.offer_type === 0){
+                    if (offer_id_type.offer_type === 0 || offer_id_type.offer_type === 6){
                      
                      
                         atl.push(offer)
-                    } else if (offer_id_type.offer_type === 1) {
+                    } else if (offer_id_type.offer_type === 1 || offer_id_type.offer_type === 7) {
                       
                       
                         btl.push(offer)
                     
 
 
+                    } else if (offer_id_type.offer_type === 2) {
+
+                        postOffers.push(offer)
+                    } else if (offer_id_type.offer_type === 3  || offer_id_type.offer_type === 6) {
+
+                        defaultAtl.push(offer)
+                    } else if (offer_id_type.offer_type === 4 || offer_id_type.offer_type === 7){
+
+                        defaultBtl.push(offer)
+                    } else if (offer_id_type.offer_type === 5){
+                      tranquiloOffer.push(offer)
                     }
 
                 }
@@ -100,18 +173,14 @@ const getOfferType = (offers) => {
 
   
 
-  let data = {
-
-    atl : atl ,
-    btl : btl 
-}
 
    
 
-    return  data
+    return   { atl ,btl , postOffers,defaultBtl,defaultAtl,tranquiloOffer}
 
 
 }
+
 const validOffers = (offersArray,amount) =>{
     
     

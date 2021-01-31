@@ -21,7 +21,7 @@ const dbssBalanceErr  = {
     Message : "There was a problem getting the balance"
 }
 const simCardTypeErr =  {
-    source: "DNBO 1.0",
+    source: "dte-dnbo",
     statusCode: 400,
     Message: "Profile not eligible",
     errCode: 300

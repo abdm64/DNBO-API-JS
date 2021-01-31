@@ -7,6 +7,9 @@ const errors = require('../Helpers/errors')
 
 
 
+
+
+
 const  presentOffers = async (reqData) => {
 
 
@@ -15,6 +18,8 @@ const  presentOffers = async (reqData) => {
     try{
       
         let dbssInfo = await dbss.getDSubsInfo(reqData)
+        //console.log(dbssInfo)
+        
 
         if (dbssInfo.err){
             return {
@@ -22,21 +27,20 @@ const  presentOffers = async (reqData) => {
                 Response : dbssInfo.message
             }
         } 
-       
+        
+      
       
         let pripaid = dbssInfo.pripaid
+        let postpaid = dbssInfo.postpaid
+        let hybrid = dbssInfo.hybrid
        
         
 
    
-        if (pripaid){
-           
-           
+        if (pripaid){ 
               const amount = dbssInfo.amount 
-             
-             console.log(amount)
-              
               const res = await networkService.getoffers01(reqData)
+              
 
             if ( res.data === undefined){
                 return  {
@@ -50,8 +54,6 @@ const  presentOffers = async (reqData) => {
              
              
               const offer10 = dataService.labeleOffers10(res.data)
-             
-
               if ( amount < 30) {
                 let tranquiloOffer = staticOffers.tranquiloOffer(offer10)
 
@@ -91,7 +93,8 @@ const  presentOffers = async (reqData) => {
 
                
    
-        } else {
+        } 
+        if(postpaid){
             // send static offer Post Paid
             //TODO POST 
 
@@ -104,6 +107,17 @@ const  presentOffers = async (reqData) => {
 
 
 
+
+
+        } 
+        
+        if (hybrid){
+
+            response = {
+                status : 200,
+                Response : staticOffers.hybridOffers
+              }
+              
 
 
         }
