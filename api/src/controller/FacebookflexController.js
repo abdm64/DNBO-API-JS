@@ -18,7 +18,7 @@ const  presentOffers = async (reqData) => {
     try{
       
         let dbssInfo = await dbss.getDSubsInfo(reqData)
-        //console.log(dbssInfo)
+       
         
 
         if (dbssInfo.err){
@@ -28,7 +28,8 @@ const  presentOffers = async (reqData) => {
             }
         } 
         
-      
+    
+   
       
         let pripaid = dbssInfo.pripaid
         let postpaid = dbssInfo.postpaid
@@ -37,7 +38,7 @@ const  presentOffers = async (reqData) => {
         
 
    
-        if (pripaid){ 
+        if (pripaid ){ 
               const amount = dbssInfo.amount 
               const res = await networkService.getoffers01(reqData)
               
@@ -78,8 +79,9 @@ const  presentOffers = async (reqData) => {
 
 
               }
+              //more tha 30
             
-              const offerFilterd = offersHelper.filterOfferByAmount( offer10,amount)
+              const offerFilterd = offersHelper.filterOfferByAmount(offer10,amount)
               
                response = {
                 status : 200,
@@ -94,10 +96,13 @@ const  presentOffers = async (reqData) => {
                
    
         } 
+
         if(postpaid){
             // send static offer Post Paid
             //TODO POST 
+// get from 10
 
+// 0- ATL prep/hybrid 1- BTL prep/hybrid 2- ATL Postpaid 3- BTL Postpaid 4- Tranquilo Prep/hybrid
 
             response = {
                 status : 200,

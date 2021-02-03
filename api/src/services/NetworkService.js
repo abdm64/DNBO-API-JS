@@ -156,6 +156,8 @@ try {
 
 
 }
+
+
 const  acceptOffer10 = async (reqdata,res) => {
   
   
@@ -226,7 +228,7 @@ module.exports ={
   getOffers05,
   getoffers01, 
   acceptOffer10, 
-  
+
   acceptOffer05
 }
 

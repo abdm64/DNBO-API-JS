@@ -141,6 +141,7 @@ const axios = axiosOne.create({
 
 
         let  amount = parseInt(res.data.data[0].attributes.amount)
+       
 
         
         

@@ -122,9 +122,7 @@ const getOffersType = (offers) => {
     let atl  = []
     let btl  = []
     let postOffers = []
-    let defaultAtl = []
-    let defaultBtl= []
-    let tranquiloOffer  = []
+    let hybridOffers = []
 
 //need factoring it (o) is the worst 
 
@@ -138,11 +136,10 @@ const getOffersType = (offers) => {
                
                    
                   
-                    if (offer_id_type.offer_type === 0 || offer_id_type.offer_type === 6){
-                     
-                     
+                    if (offer_id_type.offer_type === 0 ){
+                
                         atl.push(offer)
-                    } else if (offer_id_type.offer_type === 1 || offer_id_type.offer_type === 7) {
+                    } else if (offer_id_type.offer_type === 1 ) {
                       
                       
                         btl.push(offer)
@@ -152,15 +149,11 @@ const getOffersType = (offers) => {
                     } else if (offer_id_type.offer_type === 2) {
 
                         postOffers.push(offer)
-                    } else if (offer_id_type.offer_type === 3  || offer_id_type.offer_type === 6) {
 
-                        defaultAtl.push(offer)
-                    } else if (offer_id_type.offer_type === 4 || offer_id_type.offer_type === 7){
+                    } else if (offer_id_type.offer_type === 3  ) {
 
-                        defaultBtl.push(offer)
-                    } else if (offer_id_type.offer_type === 5){
-                      tranquiloOffer.push(offer)
-                    }
+                        hybridOffers.push(offer)
+                    } 
 
                 }
 
@@ -171,12 +164,14 @@ const getOffersType = (offers) => {
 
     }
 
-  
+    
 
+  
+//, postOffers,defaultBtl,defaultAtl,tranquiloOffer
 
    
 
-    return   { atl ,btl , postOffers,defaultBtl,defaultAtl,tranquiloOffer}
+    return   { atl ,btl }
 
 
 }

@@ -2,15 +2,9 @@
 
 const express = require('express')
 const app = express()
-const logger = require('morgan');
 const offersController = require('./controller/OffersController')
-const dataController = require('./controller/DataController')
-const fs = require('fs');
 const helmet = require('helmet')
 const path = require('path');
-const pino = require('pino-http')({
-
-})
 
 
 
@@ -68,7 +62,7 @@ app.use(express.json())
 
   app.post('/dnbo-dte/api/v1/AcceptOffer',offersController.acceptOffer);
 
-  app.post('/dnbo-dte/api/v1/upload',dataController.saveFile);
+ // app.post('/dnbo-dte/api/v1/upload',dataController.saveFile);
   
 
 
