@@ -3,7 +3,7 @@ API  allow To integrate both DNBO0.5 & DNBO1.0 in single API on the k8s platform
 
 ## API Architecture
 
-![Alt text](./images/DNBO_DBSS.PNG?raw=true "Title")
+![Alt text](./images/dnbo-dbss.PNG?raw=true "Title")
 
 ## Getting Started
 
