@@ -50,7 +50,7 @@ const labeleOffers05 = (datas) =>{
             offer_id : parseFloat((offerID.toString() + '5')) ,
             offer_code: offerData.getoffersById(offerID).offer_code,
             offer_name: data.offer_name,
-            price: offerData.getoffersById(offerID).price,
+            price: offerData.getoffersById(offerID).offer_price,
             position: data.position
 
     }
@@ -68,6 +68,7 @@ return data05
 const labeleOffers10 = (datas) =>{ 
 
     let data10 = [];
+    
     
     
 if ( datas === undefined){
@@ -136,11 +137,7 @@ if ( datas === undefined){
            
             
         })
-        if (channel_id === 18) {
-
-            redisService.saveOffers(msisdn,saveData)
-
-        }
+      
        
 
 
@@ -148,7 +145,7 @@ if ( datas === undefined){
      
         const data05 = labeleOffers05(dataOffers05.data)
         const dataFiltered05 = filterData.filterPostion(data05,reqPrams )
-      typeData(dataFiltered05,dataOffers10,res,typeInt)
+         typeData(dataFiltered05,dataOffers10,res,typeInt)
   
         
                 
@@ -158,10 +155,7 @@ if ( datas === undefined){
             
         }
         
-        if (channel_id === 18) {
-            redisService.saveOffers(msisdn,saveData)
-
-        }
+      
       
 
       }else if  (dataOffers05.data === undefined ) {
@@ -197,10 +191,7 @@ if ( datas === undefined){
          }
          
 
-         if (channel_id === 18) {
-            redisService.saveOffers(msisdn,saveData)
-
-        }
+        
       
 
       }
@@ -246,6 +237,27 @@ if ( datas === undefined){
 
   }
 
+  const oudknissSwitchData = (oudknissData) =>{
+      const atl = oudknissData.atl
+      const btl =  oudknissData.btl
+      const reqPrams = oudknissData.reqPrams
+      
+    
+    const dataFiltered05 = filterData.filterPostion(btl,reqPrams )
+   
+if(Array.isArray(dataFiltered05)){
+
+
+    return [ atl, ...dataFiltered05]
+} else {
+
+    return [ atl,dataFiltered05]
+}
+
+   
+
+
+  }
 
 
 
@@ -253,9 +265,5 @@ if ( datas === undefined){
 
 
 
-module.exports = { mergeOffers,labeleOffers05,labeleOffers10,switchData,checkOffer10 ,typeData}
 
-
-
-
-
+module.exports = { mergeOffers,labeleOffers05,labeleOffers10,switchData,checkOffer10 ,typeData,oudknissSwitchData}

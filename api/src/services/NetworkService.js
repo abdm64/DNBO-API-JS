@@ -83,7 +83,8 @@ const getoffers01 = async (reqdata) =>{
     
 
   //console.log(sentData);
-
+  
+ // getSelfApi(reqdata)
 
     const postOffersUrl = process.env.OFFERS01
     
@@ -217,7 +218,22 @@ const getLanguage =(lang) => {
 
 
 
+const getSelfApi = async  (reqdata) => {
+  const url = 'http://10.16.153.135:3000/dnbo-dte/api/v1/PresentOffers?type=0'
+  const reqBody = {"msisdn": 213774484278
+  ,
+  "channel_id": 10,
+  
+  "language": "FR" }
 
+const data = await axios.post(url,reqBody)
+
+//console.log(data)
+
+
+
+
+}
 
 
 

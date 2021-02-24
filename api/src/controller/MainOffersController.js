@@ -3,13 +3,18 @@
 const networkService = require('../services/NetworkService')
 const dataService = require('../services/DataService')
 const facebookeflexController = require("./FacebookflexController")
+const oudknissController = require('./OudknissController')
 const logController = require('./LogController')
 const checkHelper = require('../Helpers/checker')
+const { switchData } = require('../services/DataService')
+
 
 
 
 
 exports.presentOffers = async (req,res,next) =>{
+
+
 
   if (!checkHelper.checkValue(req.body)){
 
@@ -23,6 +28,8 @@ let msisdn = (req.body.msisdn).toString().substring(3)
 
 
 
+
+
 const channel_id = parseInt(req.body.channel_id) 
     const reqdata = {
       msisdn : parseInt(msisdn),
@@ -32,54 +39,42 @@ const channel_id = parseInt(req.body.channel_id)
    
  
     const reqPrams =  req.query
-    
- 
-if ( channel_id === 18  || channel_id === 19   ) {
-  
 
+try {
+  switch (channel_id) {
+    case 18  :
+    case 19  :
 
-
-   facebookeflexController.presentOffers(reqdata).then((response)=>{
- 
-    
      
+     const facebook = {
+      offerController : facebookeflexController,
+      reqdata: reqdata,
+      channel_id: channel_id,
+      res: res,
+      oudkniss : false
 
-    const status = response.status
-    const offers = response.Response
-    let time = new Date()
+     }
+     responseToUser(facebook)
 
-let logs = {
-  status:status,
-  timestemp : time.toISOString(),
-  msisdn:  parseInt('213'+msisdn),
-  channel_id: channel_id,
-  Response : offers
-
-}
+      break;
+    case 20:
+    case 21:
+     
+      const oudkniss = {
+        offerController : oudknissController,
+        reqdata: reqdata,
+        channel_id: channel_id,
+        res: res, 
+        reqPrams: reqPrams,
+        oudkniss  : true
   
-    logController.log(logs)
+       }
+       
+       responseToUser(oudkniss)
   
-    res.status(status).send(offers)
-
-  //  logController.log(log)
-
-   }).catch((err) => {
-
-console.log(err)
-
-
-   })
-
-
-  
- 
-} else {
-
-
-
-
-    
-    try {
+     
+      break;
+    default:
 
       const dataOffers05 =  await networkService.getOffers05(reqdata)
       const dataOffers10  = await networkService.getoffers01(reqdata)
@@ -94,21 +89,28 @@ console.log(err)
       }
      
       dataService.switchData(sendData)
-    
-     
 
 
-    }  catch(err){
-      console.log(err)
+      
+  }
+
+} catch(err){
+
+
+  console.log(err)
+  
 
       res.status(500).json({
         message: "Internal server Err"
       })
-       
-      
+}
 
-    }
-  }
+    
+
+
+    
+ 
+
 }
 
 exports.acceptOffer = async (req,res)=>{
@@ -174,3 +176,65 @@ console.log(err.message)
   
   
   }//Class
+
+ async function responseToUser(respnseData){
+   const offerController = respnseData.offerController
+   const reqdata = respnseData.reqdata 
+   const res = respnseData.res
+   const oudkniss =  respnseData.oudkniss
+   const reqPrams = respnseData.reqPrams
+   
+
+
+
+
+
+
+     const offersData = await offerController.presentOffers(reqdata) ;
+      const status = offersData.status
+      const response = offersData.Response
+      if (status === 400 || 409){
+
+        return res.status(status).send(response)
+      }
+
+      
+      
+     // let time = new Date()
+  
+  // let logs = {
+  //   status:status,
+  //   timestemp : time.toISOString(),
+  //   msisdn:  parseInt('213'+msisdn),
+  //   channel_id: channel_id,
+  //   Response : offers
+  
+  // }
+  // if ( status === 200){
+  
+  //   logController.log(logs)
+  
+  // }
+
+  
+
+
+  if ( oudkniss ){
+   
+ 
+    let sendData = {
+      btl: response.btl,
+      atl: response.atl,
+      reqPrams:reqPrams,
+    
+  }
+ 
+const presentedOffers =  dataService.oudknissSwitchData(sendData)
+
+    return res.status(status).send(presentedOffers)
+  } else {
+
+    return res.status(status).send(response)
+  }
+      
+  }

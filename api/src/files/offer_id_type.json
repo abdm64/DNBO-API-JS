@@ -1,5 +1,49 @@
 [
   {
+    "created_date": "2019-11-21 11:45:50.217",
+    "offer_id": 51,
+    "offer_description": "190DA= 1000DA TOUS + 3Go \\/24H",
+    "offer_price": 190,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLC1000DA3GBDAY"
+  },
+  {
+    "created_date": "2019-11-21 11:45:49.630",
+    "offer_id": 531,
+    "offer_description": "140DA= 700DA TOUS + 500Mo \\/24H",
+    "offer_price": 140,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLC700DA500MBDAY"
+  },
+  {
+    "created_date": "2019-11-21 11:45:49.747",
+    "offer_id": 551,
+    "offer_description": "90DA= 3Go \\/ 24H",
+    "offer_price": 90,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTL500MBDAY"
+  },
+  {
+    "created_date": "2019-11-21 11:45:49.957",
+    "offer_id": 571,
+    "offer_description": "400Da=1500DA Tous+10Go\\/15 Jours",
+    "offer_price": 400,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLHYBWEEKLY400DA"
+  },
+  {
     "created_date": "2020-01-09 13:18:02.080",
     "offer_id": 831,
     "offer_description": "20DA=100DA\\/24H",
@@ -249,7 +293,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 6,
+    "offer_type": 0,
     "offer_code": "DOVINTSPEEDDAY1GoPRE"
   },
   {
@@ -513,7 +557,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 5,
+    "offer_type": 2,
     "offer_code": "TRANQUILODATA100MO"
   },
   {
@@ -524,7 +568,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDDAY250MoPOST"
   },
   {
@@ -535,7 +579,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDDAY100MoPOST"
   },
   {
@@ -546,7 +590,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDDAY1GoPOST"
   },
   {
@@ -557,7 +601,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDWEEK3GoPOST"
   },
   {
@@ -568,7 +612,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDMONTH6GoPOST"
   },
   {
@@ -579,7 +623,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDMONTH15GoPOST"
   },
   {
@@ -590,7 +634,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDMONTH60GoPOST"
   },
   {
@@ -645,7 +689,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 6,
+    "offer_type": 0,
     "offer_code": "DOVINTSPEEDDAY1GoPRE"
   },
   {
@@ -678,7 +722,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 5,
+    "offer_type": 2,
     "offer_code": "TRANQUILODATA100MO"
   },
   {
@@ -689,7 +733,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDWEEK3GoPOST"
   },
   {
@@ -700,7 +744,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDDAY1GoPOST"
   },
   {
@@ -711,7 +755,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDDAY100MoPOST"
   },
   {
@@ -722,7 +766,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDDAY250MoPOST"
   },
   {
@@ -733,7 +777,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDMONTH15GoPOST"
   },
   {
@@ -744,7 +788,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDMONTH60GoPOST"
   },
   {
@@ -755,7 +799,7 @@
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
-    "offer_type": 2,
+    "offer_type": 3,
     "offer_code": "DOVINTSPEEDMONTH6GoPOST"
   },
   {
@@ -823,5 +867,60 @@
     "offer_name_ar": "ARABE",
     "offer_type": 1,
     "offer_code": "BTL500INSTAGRAM15DAYS"
+  },
+  {
+    "created_date": "2021-02-04 07:45:32.627",
+    "offer_id": 1711,
+    "offer_description": "UAT 140DA= 700DA TOUS + 500Mo \\/24H",
+    "offer_price": 140,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLC700DA500MBDAY"
+  },
+  {
+    "created_date": "2021-02-04 07:51:27.333",
+    "offer_id": 1721,
+    "offer_description": "UAT 190DA= 1000DA TOUS + 3Go \\/24H",
+    "offer_price": 190,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLC1000DA3GBDAY"
+  },
+  {
+    "created_date": "2021-02-04 07:55:06.603",
+    "offer_id": 1731,
+    "offer_description": "UAT 400Da=1500DA Tous+10Go\\/15 Jours",
+    "offer_price": 400,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLHYBWEEKLY400DA"
+  },
+  {
+    "created_date": "2021-02-04 08:05:18.610",
+    "offer_id": 1741,
+    "offer_description": "UAT 500DA=Instagram illimit�\\/15 Jours",
+    "offer_price": 500,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTL500INSTAGRAM15DAYS"
+  },
+  {
+    "created_date": "2021-02-04 08:08:49.857",
+    "offer_id": 1751,
+    "offer_description": "UAT 90DA= 3Go \\/ 24H",
+    "offer_price": 90,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTL500MBDAY"
   }
 ]

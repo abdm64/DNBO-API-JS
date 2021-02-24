@@ -202,7 +202,16 @@ const axios = axiosOne.create({
 
 
 
-
+// {
+//   "type": 0, // 0, 1, 2, 3, or 4
+//   "from": "3306", // Optional
+//   "messageId": "d2dd9955e7344d409c255a488d37718c", // Required when type is 1, 2, or 3
+//   "to": [
+//       "<telephone_number>"
+//   ],
+//   "content": "Hello world!", // Required when message type is 0 or 1
+//   "scheduleDeliveryTime": "2020-03-30T09:19:00" // Optional
+// }
 
 
 

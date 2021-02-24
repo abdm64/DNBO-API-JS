@@ -106,6 +106,18 @@
     "channel name": "facebookflexUat",
     "channel05": "",
     "channel10": 15
+  },
+  {
+    "channel_id": 20,
+    "channel name": "oudkniss",
+    "channel05": 5,
+    "channel10": 20
+  },
+  {
+    "channel_id": 21,
+    "channel name": "oudknissUat",
+    "channel05": 5,
+    "channel10": 15
   }
 
 ]

@@ -4,6 +4,7 @@
 
 
 const     filterPostion = (data,postion) =>{
+   
         const inn =  postion.in?.substring(1, postion.in?.length-1).split(',').map(Number)
         const out =  postion.out?.substring(1, postion.out?.length-1).split(',').map(Number)
         const ordr = postion.ordr

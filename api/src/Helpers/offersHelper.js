@@ -29,7 +29,7 @@ const  filterOfferByAmount = ( offer10,amount) => {
  switch (true) {
 
   case (btlLength === 0 && atlLength === 0):
-    console.log("send default offers")
+   
     validBtl = staticOffers.offerBtl
     validAtl = staticOffers.offersLess
     break;
@@ -63,7 +63,7 @@ break;
 
   default:
    //BTL and ATL has more then one element 
-   console.log('default')
+
     validBtl = validBtlArr[validBtlArr.length - 1]
     validAtl = validAtlArr[validAtlArr.length - 1]
     
@@ -201,4 +201,4 @@ const validOffers = (offersArray,amount) =>{
 }
 
 
-module.exports = { filterOfferByAmount }
+module.exports = { filterOfferByAmount,validOffers }

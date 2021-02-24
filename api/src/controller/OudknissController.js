@@ -40,12 +40,17 @@ const  presentOffers = async (reqData) => {
    
         if (pripaid ){ 
               const amount = dbssInfo.amount 
-              const res = await networkService.getoffers01(reqData)
+           
+              const resOffer10 = await networkService.getoffers01(reqData)
+              const resOffer05 = await networkService.getOffers05(reqData)
+             
+
               
 
-            if ( res.data === undefined){
+            if ( resOffer10.data === undefined || resOffer05.data === undefined){
+                const res = resOffer10 || resOffer05
                 return  {
-                        status:409,
+                        status:400,
                         Response : errors.dnboErr(res)
                 }
 
@@ -54,7 +59,10 @@ const  presentOffers = async (reqData) => {
     
              
              
-              const offer10 = dataService.labeleOffers10(res.data)
+              const offer10 = dataService.labeleOffers10(resOffer10.data)
+              const offer05 = dataService.labeleOffers05(resOffer05.data)
+              
+              
               if ( amount < 30) {
                 let tranquiloOffer = staticOffers.tranquiloOffer(offer10)
 
@@ -81,11 +89,18 @@ const  presentOffers = async (reqData) => {
               }
               //more tha 30
             
-              const offerFilterd = offersHelper.filterOfferByAmount(offer10,amount)
+              const offerFilterdAtl = offersHelper.filterOfferByAmount(offer10,amount)
+              const offerFilterdBtl = offersHelper.validOffers(offer05,amount)
+              
+              const atl = offerFilterdAtl[0]
+              const btl = offerFilterdBtl[0]
+              btl.position = 2
+
+             // console.log(atl)
               
                response = {
                 status : 200,
-                Response : offerFilterd
+                Response : {atl : atl, btl: offerFilterdBtl }
               }
               
 
@@ -158,3 +173,7 @@ return {
 
 module.exports = { presentOffers }
 
+
+
+
+// 60 15 14 70  19 80 30 50 16 18

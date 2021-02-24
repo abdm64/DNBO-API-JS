@@ -2,7 +2,7 @@
 
 const express = require('express')
 const app = express()
-const offersController = require('./controller/OffersController')
+const MainoffersController = require('./controller/MainOffersController')
 const helmet = require('helmet')
 const path = require('path');
 
@@ -57,10 +57,10 @@ app.use(express.json())
 
 
 
-  app.post('/dnbo-dte/api/v1/PresentOffers',offersController.presentOffers);
+  app.post('/dnbo-dte/api/v1/PresentOffers',MainoffersController.presentOffers);
 
 
-  app.post('/dnbo-dte/api/v1/AcceptOffer',offersController.acceptOffer);
+  app.post('/dnbo-dte/api/v1/AcceptOffer',MainoffersController.acceptOffer);
 
  // app.post('/dnbo-dte/api/v1/upload',dataController.saveFile);
   
