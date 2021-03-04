@@ -89,6 +89,24 @@ const offersLess = {
     }
 
 
+    const simDataOffers = [
+        {
+            "offer_id": 44444, 
+            "offer_code": " PrepaidDjezzyInternet1000",
+            "offer_name": " Prepaid Djezzy Internet 1000",
+            "price": 1000,
+            "position": 1
+        },
+        {
+            "offer_id": 55555, 
+            "offer_code": " PrepaidDjezzyInternet4003",
+            "offer_name": " Internet 4000 150GB monthly(180days)",
+            "price": 4000,
+            "position": 2
+        },
+    
+    ]
+
 
     const getOffersType = (offers) => {
       let atl  = []
@@ -161,7 +179,8 @@ module.exports ={
     offerBtl,  
     hybridOffers,
     tranquiloOffer, 
-    getOffersType
+    getOffersType, 
+    simDataOffers
 
     
   }

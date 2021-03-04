@@ -46,9 +46,11 @@ const axios = axiosOne.create({
         let id = parseInt(res.data.data[0].id)
        
         let paymentType = res.data.data[0].attributes["payment-type"] 
+        
          const  notAllowedProfile =    await notEligibleProfile(id)
+         const  simDataType = await checkSimData(id)
         
-        
+       
          
 
          if (notAllowedProfile){
@@ -64,6 +66,16 @@ const axios = axiosOne.create({
           
 
 
+         }
+
+         if(simDataType){
+
+
+
+           return {
+            simData : true,
+            amount : 0
+          }
          }
         
   
@@ -155,13 +167,31 @@ const axios = axiosOne.create({
 
      let isCompany = await isCompanyFunc(id)
     const notEligibleProfilesArr = [ 'EmployesPost','SyndicateCtrl','EmployesData','VIP']
-    let dbssSimCardTypeUrl= buildUrl(id).simCardType
-    let res = await axios.get(dbssSimCardTypeUrl) 
-    let simCardType = res.data.data.attributes.code 
+    const simCardType = await getSimCardType(id)
     
     
     
     return ( notEligibleProfilesArr.includes(simCardType) || simCardType.toLowerCase().includes('b2b')  || isCompany  )
+
+      }
+
+      const getSimCardType = async (id) => {
+        let dbssSimCardTypeUrl= buildUrl(id).simCardType
+        let res = await axios.get(dbssSimCardTypeUrl) 
+        let simCardType = res.data.data.attributes.code 
+
+        return simCardType
+
+
+      }
+
+      const checkSimData = async (id) =>{
+        const simCardType = await getSimCardType(id)
+        const simDataType = ['PrepaidModemInternet','PrepaidDjezzyInternet','PrepaidDjezzyInternet']
+
+
+        return simDataType.includes(simCardType)
+
 
       }
 

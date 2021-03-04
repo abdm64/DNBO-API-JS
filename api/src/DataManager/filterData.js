@@ -8,6 +8,8 @@ const     filterPostion = (data,postion) =>{
         const inn =  postion.in?.substring(1, postion.in?.length-1).split(',').map(Number)
         const out =  postion.out?.substring(1, postion.out?.length-1).split(',').map(Number)
         const ordr = postion.ordr
+        const offerIn = postion.offerIn?.substring(1, postion.offerIn?.length-1).split(',').map(Number)
+        const offerOut = postion.offerOut?.substring(1, postion.offerOut?.length-1).split(',').map(Number)
         const type = parseInt(postion.type)
 
 
@@ -61,7 +63,7 @@ const     filterPostion = (data,postion) =>{
                 
                 for(let i = 0; i < data.length; i++) {
     
-                if( data[i].position === j) {
+                if( data[i].offer_id === j) {
 
                    removeElement(data,data[i])
                       
@@ -86,7 +88,7 @@ const     filterPostion = (data,postion) =>{
         // const dataFiltered = data.filter( e => e.position === i ) 
         
             for ( let datae of data){
-                if ( datae.position === i){
+                if ( datae.offer_id === i){
 
                     filterDataIn.push(datae)
                 }
@@ -130,7 +132,7 @@ const     filterPostion = (data,postion) =>{
 
 
 
-  const  filterType = (data,type) =>{
+  const  filterType = (data,type) => {
 
 
         if (type === 0){

@@ -34,11 +34,11 @@ const channelArray = require('../files/dnbo_channel_id.json');
 
 
 
-
 module.exports = {
     getoffersById,
     getChannel,
     stringFy10,
+    
 
 }
 

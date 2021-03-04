@@ -58,6 +58,9 @@ app.use(express.json())
 
 
   app.post('/dnbo-dte/api/v1/PresentOffers',MainoffersController.presentOffers);
+  // app.get('/dnbo-dte/api/v1/PresentOffers/:msisdn/oudkniss',)
+  // app.get('/dnbo-dte/api/v1/PresentOffers/:msisdn/facebook')
+  // app.get('/dnbo-dte/api/v1/PresentOffers/:msisdn/')
 
 
   app.post('/dnbo-dte/api/v1/AcceptOffer',MainoffersController.acceptOffer);

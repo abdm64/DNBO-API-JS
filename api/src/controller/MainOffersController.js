@@ -116,7 +116,6 @@ try {
 exports.acceptOffer = async (req,res)=>{
   if (!checkHelper.checkValue(req.body)){
 
-
 		return res.status(400).send({message : "Bad Request msisdn and channel_id must be not undefined"})
 	}
 
@@ -183,7 +182,7 @@ console.log(err.message)
    const res = respnseData.res
    const oudkniss =  respnseData.oudkniss
    const reqPrams = respnseData.reqPrams
-   
+  const statusArray = [400,409]
 
 
 
@@ -193,12 +192,13 @@ console.log(err.message)
      const offersData = await offerController.presentOffers(reqdata) ;
       const status = offersData.status
       const response = offersData.Response
-      if (status === 400 || 409){
+      const specialSim = offersData.specialSim 
+      if (statusArray.includes(status) ) {
 
         return res.status(status).send(response)
       }
 
-      
+    
       
      // let time = new Date()
   
@@ -220,6 +220,11 @@ console.log(err.message)
 
 
   if ( oudkniss ){
+
+    if (specialSim){
+
+      return res.status(status).send(response)
+    }
    
  
     let sendData = {
@@ -233,7 +238,7 @@ const presentedOffers =  dataService.oudknissSwitchData(sendData)
 
     return res.status(status).send(presentedOffers)
   } else {
-
+    
     return res.status(status).send(response)
   }
       

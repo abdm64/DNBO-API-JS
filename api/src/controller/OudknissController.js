@@ -34,15 +34,28 @@ const  presentOffers = async (reqData) => {
         let pripaid = dbssInfo.pripaid
         let postpaid = dbssInfo.postpaid
         let hybrid = dbssInfo.hybrid
-       
+        let simData = dbssInfo.simData
         
+        
+        if(simData){
+            
+            response = {
+                specialSim : true,
+                status: 200,
+                Response: staticOffers.simDataOffers
+            }
+
+
+
+        }
+
 
    
         if (pripaid ){ 
               const amount = dbssInfo.amount 
-           
               const resOffer10 = await networkService.getoffers01(reqData)
               const resOffer05 = await networkService.getOffers05(reqData)
+             // console.log(resOffer05.data)
              
 
               
@@ -90,17 +103,14 @@ const  presentOffers = async (reqData) => {
               //more tha 30
             
               const offerFilterdAtl = offersHelper.filterOfferByAmount(offer10,amount)
-              const offerFilterdBtl = offersHelper.validOffers(offer05,amount)
-              
+           
               const atl = offerFilterdAtl[0]
-              const btl = offerFilterdBtl[0]
-              btl.position = 2
-
-             // console.log(atl)
+           
+            
               
                response = {
                 status : 200,
-                Response : {atl : atl, btl: offerFilterdBtl }
+                Response : {atl : atl, btl: offer05 }
               }
               
 
@@ -120,6 +130,7 @@ const  presentOffers = async (reqData) => {
 // 0- ATL prep/hybrid 1- BTL prep/hybrid 2- ATL Postpaid 3- BTL Postpaid 4- Tranquilo Prep/hybrid
 
             response = {
+                specialSim : true,
                 status : 200,
                 Response : staticOffers.postpaidOffers
               }
@@ -134,6 +145,7 @@ const  presentOffers = async (reqData) => {
         if (hybrid){
 
             response = {
+                specialSim : true,
                 status : 200,
                 Response : staticOffers.hybridOffers
               }
@@ -141,7 +153,7 @@ const  presentOffers = async (reqData) => {
 
 
         }
-
+       
 
 
 

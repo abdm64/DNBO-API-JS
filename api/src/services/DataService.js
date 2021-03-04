@@ -239,14 +239,14 @@ if ( datas === undefined){
 
   const oudknissSwitchData = (oudknissData) =>{
       const atl = oudknissData.atl
-      const btl =  oudknissData.btl
+      const btl = setOfferPosition(oudknissData.btl) 
       const reqPrams = oudknissData.reqPrams
       
     
     const dataFiltered05 = filterData.filterPostion(btl,reqPrams )
    
 if(Array.isArray(dataFiltered05)){
-
+    setOfferPosition(dataFiltered05) 
 
     return [ atl, ...dataFiltered05]
 } else {
@@ -259,6 +259,22 @@ if(Array.isArray(dataFiltered05)){
 
   }
 
+  const setOfferPosition = (offers) =>{
+      
+    let i = 2 
+    let offer5 = []
+    
+    for (let  offer of offers){
+    offer.position = i
+    i++
+    
+    offer5.push(offer)
+    }
+ // console.log(offer5)
+    return offer5
+    
+    }
+    
 
 
 
@@ -266,4 +282,5 @@ if(Array.isArray(dataFiltered05)){
 
 
 
-module.exports = { mergeOffers,labeleOffers05,labeleOffers10,switchData,checkOffer10 ,typeData,oudknissSwitchData}
+
+module.exports = { mergeOffers,labeleOffers05,labeleOffers10,switchData,checkOffer10 ,typeData,oudknissSwitchData,setOfferPosition }
