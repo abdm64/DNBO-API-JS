@@ -44,6 +44,28 @@
     "offer_code": "BTLHYBWEEKLY400DA"
   },
   {
+    "created_date": "2020-01-05 18:42:13.023",
+    "offer_id": 691,
+    "offer_description": "800Da=Illimit� Djezzy+2000DA Autres+15Go\\/30Jours",
+    "offer_price": 800,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLHYBMONTHLY800DA"
+  },
+  {
+    "created_date": "2020-01-05 18:48:27.550",
+    "offer_id": 701,
+    "offer_description": "600Da=Illimit� Djezzy+1500DA Autres+12Go\\/30Jours",
+    "offer_price": 600,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLHYBMONTHLY600DA"
+  },
+  {
     "created_date": "2020-01-09 13:18:02.080",
     "offer_id": 831,
     "offer_description": "20DA=100DA\\/24H",
@@ -112,13 +134,13 @@
   {
     "created_date": "2020-02-11 12:36:10.660",
     "offer_id": 931,
-    "offer_description": "1000DA=illimit� Djezzy+3000DA+20Go\\/30Jours",
+    "offer_description": "1000=15Go\\/1mois",
     "offer_price": 1000,
     "offer_name_fr": "FRENCH",
     "offer_name_en": "ENGLISH",
     "offer_name_ar": "ARABE",
     "offer_type": 1,
-    "offer_code": "B2CSP1PREP2000"
+    "offer_code": "PrepaidDjezzyInternet1000"
   },
   {
     "created_date": "2020-02-12 10:07:23.683",
@@ -922,5 +944,82 @@
     "offer_name_ar": "ARABE",
     "offer_type": 1,
     "offer_code": "BTL500MBDAY"
+  },
+  {
+    "created_date": "2021-02-10 17:20:17.820",
+    "offer_id": 1761,
+    "offer_description": "offer_icdp_dnbo",
+    "offer_price": 50,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": 20681
+  },
+  {
+    "created_date": "2021-02-11 10:04:49.687",
+    "offer_id": 1771,
+    "offer_description": "offer_icdp_bonus",
+    "offer_price": 50,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": 20684
+  },
+  {
+    "created_date": "2021-03-09 07:19:44.273",
+    "offer_id": 1781,
+    "offer_description": "UAT 1000=15Go\\/1mois",
+    "offer_price": 1000,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "PrepaidDjezzyInternet1000"
+  },
+  {
+    "created_date": "2021-03-09 07:21:27.463",
+    "offer_id": 1791,
+    "offer_description": "4000=150Go\\/6 mois",
+    "offer_price": 4000,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "PrepaidDjezzyInternet4003"
+  },
+  {
+    "created_date": "2021-03-09 07:24:09.637",
+    "offer_id": 1801,
+    "offer_description": "UAT 4000=150Go\\/6 mois",
+    "offer_price": 4000,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "PrepaidDjezzyInternet4003"
+  },
+  {
+    "created_date": "2021-03-21 18:42:13.023",
+    "offer_id": 1811,
+    "offer_description": "UAT 800Da=Illimit� Djezzy+2000DA Autres+15Go\\/30Jours",
+    "offer_price": 800,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLHYBMONTHLY800DA"
+  },
+  {
+    "created_date": "2021-03-21 18:48:27.550",
+    "offer_id": 1821,
+    "offer_description": "UAT 600Da=Illimit� Djezzy+1500DA Autres+12Go\\/30Jours",
+    "offer_price": 600,
+    "offer_name_fr": "FRENCH",
+    "offer_name_en": "ENGLISH",
+    "offer_name_ar": "ARABE",
+    "offer_type": 1,
+    "offer_code": "BTLHYBMONTHLY600DA"
   }
 ]

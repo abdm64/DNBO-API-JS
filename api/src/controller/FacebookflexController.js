@@ -12,7 +12,7 @@ const errors = require('../Helpers/errors')
 
 const  presentOffers = async (reqData) => {
 
-
+//console.log( reqData)
     
     let response
     try{
@@ -29,13 +29,25 @@ const  presentOffers = async (reqData) => {
         } 
         
     
-   
+  // console.log( dbssInfo)
       
         let pripaid = dbssInfo.pripaid
         let postpaid = dbssInfo.postpaid
         let hybrid = dbssInfo.hybrid
+        let simData = dbssInfo.simData
+
        
-        
+        if(simData){
+            
+            response = {
+                specialSim : true,
+                status: 200,
+                Response: staticOffers.simDataOffers
+            }
+
+
+
+        }
 
    
         if (pripaid ){ 
@@ -80,7 +92,8 @@ const  presentOffers = async (reqData) => {
 
               }
               //more tha 30
-            
+             // console.log(offer10)
+          //  console.log(amount)
               const offerFilterd = offersHelper.filterOfferByAmount(offer10,amount)
               
                response = {
@@ -126,8 +139,9 @@ const  presentOffers = async (reqData) => {
 
 
         }
+      //  console.log(response)
 
-
+return response
 
 
     } catch(err){
@@ -153,7 +167,7 @@ return {
 
 
 
-    return  response
+    
 }
 
 module.exports = { presentOffers }

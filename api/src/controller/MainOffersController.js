@@ -178,6 +178,7 @@ console.log(err.message)
 
  async function responseToUser(respnseData){
    const offerController = respnseData.offerController
+
    const reqdata = respnseData.reqdata 
    const res = respnseData.res
    const oudkniss =  respnseData.oudkniss
@@ -189,7 +190,7 @@ console.log(err.message)
 
 
 
-     const offersData = await offerController.presentOffers(reqdata) ;
+      const offersData = await offerController.presentOffers(reqdata) ;
       const status = offersData.status
       const response = offersData.Response
       const specialSim = offersData.specialSim 

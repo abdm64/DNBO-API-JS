@@ -52,11 +52,11 @@ const  presentOffers = async (reqData) => {
 
    
         if (pripaid ){ 
-              const amount = dbssInfo.amount 
+              let  amount = dbssInfo.amount 
               const resOffer10 = await networkService.getoffers01(reqData)
               const resOffer05 = await networkService.getOffers05(reqData)
              // console.log(resOffer05.data)
-             
+             //amount= 20
 
               
 
@@ -153,13 +153,14 @@ const  presentOffers = async (reqData) => {
 
 
         }
+        
        
 
 
 
     } catch(err){
+        
         //TODO send err message with status 
-
 
 
         console.log(err)
